@@ -1,0 +1,5 @@
+# Project-level Codex defaults for reactnative-nensgo.
+# Workflow rules live in AGENTS.md, PLANS.md, docs/, and specs/.
+
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
