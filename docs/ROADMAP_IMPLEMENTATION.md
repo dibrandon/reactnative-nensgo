@@ -132,6 +132,7 @@ Completed result:
 Name: Auth feasibility layer
 
 - Goal: validate whether authentication requirements fit the mobile POC
+- Status: Completed on 2026-04-17
 - Expected outputs:
   - evolution path from the existing `Cuenta` placeholder
   - auth assumptions documented
@@ -139,6 +140,13 @@ Name: Auth feasibility layer
   - explicit blockers if backend inputs are missing
 - Exit criteria:
   - feasibility is clear even if full auth is not implemented
+
+Completed result:
+
+- `Cuenta` now renders a structured auth feasibility screen instead of a placeholder
+- the repo has a dedicated `src/features/account` module with a runtime feasibility model
+- the screen captures the observed web auth baseline, missing inputs, and proposed mobile path
+- validation passed through `tsc --noEmit` and `expo export --platform web`
 
 ## Phase 7
 

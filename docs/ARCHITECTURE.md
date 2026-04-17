@@ -2,7 +2,7 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, and the repo SDD documents.
+As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, an account feasibility surface, and the repo SDD documents.
 
 The repository currently contains:
 
@@ -15,6 +15,7 @@ The repository currently contains:
 - shell-specific placeholder composition built on the shared visual layer
 - `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, and mobile card/list composition
 - a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
+- `src/features/account` with an auth feasibility model and account surface for the `Cuenta` tab
 
 ## Provisional Target Architecture For The POC
 
@@ -78,6 +79,10 @@ src/
       helpers/
       hooks/
       models/
+    account/
+      components/
+      data/
+      models/
     shell/
       components/
   shared/
@@ -93,7 +98,7 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 - mock data or adapters only when a slice actually needs them
 - configuration and environment boundaries
 
-The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell screens and the catalog list. The next slices should extend those areas only when the detail and account flows need additional primitives.
+The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell, catalog, detail, and account feasibility screens. The next slices should extend those areas only when a future iteration truly needs more surface area.
 
 ### Data Boundary Direction
 
@@ -133,6 +138,7 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
 - Catalog reads will use curated mobile mocks before any backend or full web-model parity work is considered.
 - Detail is implemented as a route, not as a modal migration.
+- `Cuenta` documents auth feasibility in-app before any real auth runtime exists.
 
 ## Decisions Explicitly Deferred
 

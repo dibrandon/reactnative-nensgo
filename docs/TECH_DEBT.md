@@ -12,12 +12,12 @@ These are not defects in shipped code yet, but they are important gaps to track 
 
 - App icons and generated Expo assets are still scaffold-level, not curated NensGo production assets.
 - No lint, format, test, or CI baseline exists.
-- The shared UI layer is intentionally thin and still biased toward shell, catalog, and detail surfaces only.
-- No backend contract or auth contract is documented.
+- The shared UI layer is intentionally thin and still biased toward shell, catalog, detail, and account feasibility surfaces only.
+- No backend contract or executable auth runtime contract is documented yet.
 - Catalog data is still a curated in-repo mock set, so freshness and backend parity are intentionally unresolved.
 - Catalog images are copied into the repo for the curated mock set and are not yet optimized as a production asset pipeline.
 - Detail contact uses a simple external WhatsApp handoff and has no analytics, fallback contact channels, or deep-link policy yet.
-- `Cuenta` is a visible placeholder only; no auth viability work has started yet.
+- `Cuenta` now documents auth feasibility, but real mobile auth runtime, credentials, and redirect policy are still absent.
 
 ## Debt Recording Rule
 

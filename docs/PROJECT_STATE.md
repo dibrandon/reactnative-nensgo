@@ -7,7 +7,7 @@ Last updated: 2026-04-17
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell, mock-backed catalog, and detail route implemented
+- Application code: Expo Router shell, mock-backed catalog, detail route, and account feasibility surface implemented
 - Build tooling: Expo SDK 55
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -42,6 +42,7 @@ The repository now has the following operating baseline:
 - `src/app` router structure and shared visual baseline
 - mock-backed mobile catalog list under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
+- account auth-feasibility surface under `src/features/account`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -53,10 +54,10 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
-- real auth feasibility layer beyond the visible placeholder account tab
+- real auth runtime beyond the visible feasibility layer
 - test baseline
 - lint or format baseline
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `005-auth-feasibility`. The discovery loop now runs from catalog card to detail and simple external contact, so the next slice should evolve `Cuenta` from placeholder toward an honest auth feasibility seam without inventing backend contracts.
+The next meaningful implementation task should implement `006-poc-evaluation`. The native POC now covers shell, visual system, catalog, detail, and auth feasibility framing, so the repo should close with an honest recommendation on whether continuing into production-oriented work makes sense.

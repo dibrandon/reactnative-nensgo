@@ -133,3 +133,20 @@ Impact:
 - catalog cards are responsible only for navigation into detail
 - contact remains an external handoff, not an in-app workflow
 - favorites and auth remain outside the detail slice
+
+## 2026-04-17 - ADR-0009 - Use `Cuenta` As An Auth Feasibility Surface Before Wiring Mobile Auth
+
+Decision:
+
+The `Cuenta` tab documents current anonymous runtime state, observed web auth facts, missing inputs, and the proposed mobile auth path before any real Supabase or Google integration is attempted in native.
+
+Why:
+
+The POC needs to answer whether auth is a sensible next investment, not to fake a sign-in flow. The repo still lacks credentials, redirects, and approved protected actions, so an honest feasibility layer is more useful than a half-connected auth screen.
+
+Impact:
+
+- `Cuenta` is no longer a generic placeholder
+- the account feature module holds a small operational auth-feasibility model
+- mobile auth remains intentionally unimplemented until inputs are approved
+- future auth work has a visible baseline in-app and in docs

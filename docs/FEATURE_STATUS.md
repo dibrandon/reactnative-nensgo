@@ -11,5 +11,5 @@ Last updated: 2026-04-17
 | `002-visual-system` | Visual system and tokens | Completed | Added shared typography, card, button, screen, and brand primitives on top of the Expo shell. |
 | `003-catalog-read` | Public catalog proof of concept | Completed | `Explorar` now renders a mock-backed list with lean mobile cards and no detail leakage yet. |
 | `004-detail-read` | Detail proof of concept | Completed | Catalog cards now open a full-screen route with facts, location, and simple external contact. |
-| `005-auth-feasibility` | Auth feasibility layer | Planned | Next target. Builds on the early `Cuenta` placeholder and must not invent backend contracts. |
-| `006-poc-evaluation` | POC evaluation and recommendation | Planned | Wrap-up phase after functional slices exist. |
+| `005-auth-feasibility` | Auth feasibility layer | Completed | `Cuenta` now documents current anonymous state, missing inputs, and the proposed mobile auth path. |
+| `006-poc-evaluation` | POC evaluation and recommendation | Planned | Next target. Wrap-up phase after functional slices exist. |
