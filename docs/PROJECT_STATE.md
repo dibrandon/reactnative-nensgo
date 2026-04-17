@@ -37,6 +37,7 @@ The repository now has the following operating baseline:
 - plan template
 - project docs index and state docs
 - commit policy for closing slices
+- native POC umbrella spec and first executable shell plan
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -61,4 +62,4 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-The next meaningful implementation task should create the first application scaffold in a tightly scoped feature slice, not skip directly to product flows.
+The next meaningful implementation task should implement `001-expo-navigation-shell` only. It should create the first Expo shell with `Explorar` and `Cuenta`, and should not skip directly into catalog, detail, or auth integration work.

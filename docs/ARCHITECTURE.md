@@ -19,6 +19,7 @@ This is a target direction, not implemented reality.
 
 - Expo-managed React Native project
 - TypeScript-first setup
+- Expo Router for app shell navigation
 - mock-friendly boundaries so the POC does not depend on backend completion
 
 ### Architectural Layers
@@ -31,26 +32,94 @@ The POC should evolve in thin layers:
 4. feasibility layer for auth-related integration
 5. evaluation artifacts for whether the POC should continue
 
+### Product Interpretation For Mobile
+
+The mobile POC is not a route-for-route copy of the current web experience.
+
+The intended native interpretation is:
+
+- a focused family loop centered on discovering activities
+- a short, app-like `Explorar` entry point instead of a long editorial landing
+- a full-screen detail route instead of a modal detail overlay
+- an early visible `Cuenta` surface as an auth placeholder, not real auth
+
+The following current web areas are intentionally outside the native POC baseline:
+
+- `/para-centros`
+- `/pvi`
+- admin or internal surfaces
+- SEO-driven web structure
+- parity with current web filters, favorites, and protected actions
+
 ### Module Direction
 
-Once the app exists, prefer a structure that keeps feature code localized and shared concerns explicit. At a minimum, expect separate areas for:
+The first runtime slice should normalize toward this tree:
+
+```txt
+src/
+  app/
+    _layout.tsx
+    (tabs)/
+      _layout.tsx
+      explore/
+        index.tsx
+      account.tsx
+  features/
+    shell/
+      components/
+  shared/
+    theme/
+    ui/
+```
+
+As the app grows, keep feature code localized and shared concerns explicit. At a minimum, expect separate areas for:
 
 - app shell and navigation
 - shared UI or theme primitives
-- feature modules
-- mock data or adapters
+- feature modules for catalog and account
+- mock data or adapters only when a slice actually needs them
 - configuration and environment boundaries
+
+### Data Boundary Direction
+
+The mobile POC should not inherit the full current web domain shape by default.
+
+For future catalog slices, use a presentation-oriented mobile contract as the default boundary:
+
+```ts
+type CatalogActivity = {
+  id: string;
+  title: string;
+  categoryLabel?: string;
+  shortDescription?: string;
+  imageUrl?: string;
+  cityName: string;
+  centerName?: string;
+  ageLabel?: string;
+  scheduleLabel?: string;
+  priceLabel?: string;
+  venueName?: string;
+  venueAddress?: string;
+  isFree?: boolean;
+  contactPhone?: string;
+};
+```
+
+Do not expand this contract into a mirror of the current web model unless a later slice proves the extra fields are necessary.
 
 ## Decisions Already Made
 
 - The repo will use spec-driven development as its operating model.
 - Expo is the default starting point unless later repo reality or explicit user instruction overrides it.
+- The native POC will validate a focused family loop instead of web parity.
+- Expo Router will be used for the shell slice.
+- The first native shell will expose `Explorar` and `Cuenta` tabs.
+- Detail should land later as a dedicated full-screen route, not as a modal migration.
 
 ## Decisions Explicitly Deferred
 
 These decisions should not be invented before the app scaffold task:
 
-- routing choice inside Expo
 - state management approach beyond local needs
 - backend data access strategy
 - auth provider integration details

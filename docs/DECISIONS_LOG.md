@@ -48,3 +48,21 @@ Impact:
 - commit bodies must include `Context`, `Changes`, `Validation`, and `Follow-ups`
 - each closing commit must reference its active spec and plan
 - `wip` is not the standard shared history format for this repository
+
+## 2026-04-17 - ADR-0004 - Validate The Native POC Through A Focused Family Loop
+
+Decision:
+
+The React Native POC will validate NensGo through a focused family loop instead of attempting route parity with the current web product.
+
+Why:
+
+The current web baseline contains public catalog, detail seams, auth seams, favorites, internal routes, and web-specific surfaces. Porting those structures directly into native would blur the real question, which is whether the core family discovery experience feels worthwhile as an app.
+
+Impact:
+
+- the native shell starts with `Explorar` and `Cuenta`
+- the long web landing is not migrated as-is into mobile
+- detail is expected later as a full-screen route, not as a modal carryover
+- `/para-centros`, `/pvi`, admin, SEO, and full auth are outside the baseline POC scope
+- future catalog slices should use a lean presentation contract instead of mirroring the current web/domain model

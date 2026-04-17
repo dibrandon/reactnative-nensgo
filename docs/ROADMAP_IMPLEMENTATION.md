@@ -2,6 +2,27 @@
 
 This roadmap defines the intended sequence for the React Native POC.
 
+## POC Framing
+
+The native POC is intentionally narrower than the current web baseline.
+
+The validated experience should focus on:
+
+- entering a native app shell
+- exploring a family-facing catalog
+- opening a full-screen detail route
+- understanding how future account and auth can fit
+
+The following are explicitly out of the POC baseline unless a later slice reopens them:
+
+- `/para-centros`
+- `/pvi`
+- admin or internal surfaces
+- full auth and profile behavior
+- favorites and protected-action flows
+- complex filters
+- SEO or web parity work
+
 ## Phase 1
 
 Name: SDD foundation and repo bootstrap
@@ -23,12 +44,15 @@ Name: Expo scaffold and navigation shell
 - Expected outputs:
   - Expo app scaffold
   - TypeScript baseline
-  - navigation shell
+  - Expo Router navigation shell
   - safe area handling
+  - tabs for `Explorar` and `Cuenta`
+  - shell-only branded placeholders
   - basic smoke validation
 - Exit criteria:
   - app boots locally
-  - at least one placeholder screen is reachable
+  - both tabs are reachable
+  - no catalog, detail, auth, or data work is smuggled into this slice
   - touched files are limited to app setup and shell concerns
 
 ## Phase 3
@@ -52,8 +76,10 @@ Name: Public catalog proof of concept
   - list screen
   - item card primitive
   - loading and empty states
+  - lean `CatalogActivity` boundary sized only for mobile card, basic detail, and simple external contact CTA
 - Exit criteria:
   - catalog can be demonstrated without backend dependency ambiguity
+  - the mobile data contract does not mirror the full current web model without justification
 
 ## Phase 5
 
@@ -61,11 +87,13 @@ Name: Detail proof of concept
 
 - Goal: add a basic detail flow from the catalog
 - Expected outputs:
-  - detail route
+  - dedicated full-screen detail route
   - detail screen
+  - simple external contact CTA
   - minimal data contract between list and detail
 - Exit criteria:
   - a user can move from list to detail in the POC
+  - the detail feels native rather than like a web modal port
 
 ## Phase 6
 
@@ -73,6 +101,7 @@ Name: Auth feasibility layer
 
 - Goal: validate whether authentication requirements fit the mobile POC
 - Expected outputs:
+  - evolution path from the existing `Cuenta` placeholder
   - auth assumptions documented
   - minimal technical path or stub flow
   - explicit blockers if backend inputs are missing
