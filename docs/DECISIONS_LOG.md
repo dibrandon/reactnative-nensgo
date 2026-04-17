@@ -150,3 +150,19 @@ Impact:
 - the account feature module holds a small operational auth-feasibility model
 - mobile auth remains intentionally unimplemented until inputs are approved
 - future auth work has a visible baseline in-app and in docs
+
+## 2026-04-18 - ADR-0010 - Pin The Repo To Expo SDK 54 For Expo Go Phone Preview
+
+Decision:
+
+The repository runtime is pinned to Expo SDK 54 for now so the app can be opened on a physical phone with the default Expo Go store build during the current SDK 55 rollout window.
+
+Why:
+
+The user's immediate goal is to see the POC on-device through Expo Go, not to move to development builds yet. Official Expo guidance for the current transition window states that the default store build of Expo Go remains on SDK 54 for a short period after SDK 55 released.
+
+Impact:
+
+- current repo state and architecture docs now reflect SDK 54 as the runtime baseline
+- the POC behavior stays the same; only the Expo runtime compatibility layer changed
+- future upgrades should be deliberate, not automatic, once Expo Go support and project needs align again

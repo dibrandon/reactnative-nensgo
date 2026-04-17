@@ -2,12 +2,12 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, an account feasibility surface, and the repo SDD documents.
+As of 2026-04-18, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, an account feasibility surface, and the repo SDD documents.
 
 The repository currently contains:
 
 - SDD operating documents
-- Expo SDK 55 runtime dependencies
+- Expo SDK 54 runtime dependencies
 - `src/app` driven by Expo Router
 - a catalog-backed `Explorar` tab plus a placeholder `Cuenta` tab
 - shared theme tokens plus typography primitives
@@ -139,6 +139,7 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 - Catalog reads will use curated mobile mocks before any backend or full web-model parity work is considered.
 - Detail is implemented as a route, not as a modal migration.
 - `Cuenta` documents auth feasibility in-app before any real auth runtime exists.
+- The current repo baseline is pinned to Expo SDK 54 so the project can run in the default Expo Go store build on a physical phone during the current compatibility window.
 
 ## Decisions Explicitly Deferred
 

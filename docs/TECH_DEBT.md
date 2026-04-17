@@ -1,6 +1,6 @@
 # Tech Debt
 
-Last updated: 2026-04-17
+Last updated: 2026-04-18
 
 ## Current Debt Reality
 
@@ -18,6 +18,7 @@ These are not defects in shipped code yet, but they are important gaps to track 
 - Catalog images are copied into the repo for the curated mock set and are not yet optimized as a production asset pipeline.
 - Detail contact uses a simple external WhatsApp handoff and has no analytics, fallback contact channels, or deep-link policy yet.
 - `Cuenta` now documents auth feasibility, but real mobile auth runtime, credentials, and redirect policy are still absent.
+- The repo is currently pinned to Expo SDK 54 for Expo Go convenience on phones; upgrading again should wait until Expo Go store support and the project's real runtime needs align.
 
 ## Debt Recording Rule
 

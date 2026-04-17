@@ -58,7 +58,7 @@ Name: Expo scaffold and navigation shell
 
 Completed result:
 
-- Expo SDK 55 runtime added to the repo
+- Expo runtime added to the repo and later aligned to SDK 54 for Expo Go phone compatibility
 - `src/app` now drives Expo Router
 - `Explorar` and `Cuenta` render branded placeholder screens
 - validation passed through `tsc --noEmit` and `expo export --platform web`
