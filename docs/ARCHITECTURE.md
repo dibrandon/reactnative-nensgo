@@ -2,18 +2,19 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, and the repo SDD documents.
+As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, and the repo SDD documents.
 
 The repository currently contains:
 
 - SDD operating documents
 - Expo SDK 55 runtime dependencies
 - `src/app` driven by Expo Router
-- branded placeholder screens for `Explorar` and `Cuenta`
+- a catalog-backed `Explorar` tab plus a placeholder `Cuenta` tab
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
 - shell-specific placeholder composition built on the shared visual layer
 - `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, and mobile card/list composition
+- a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
 
 ## Provisional Target Architecture For The POC
 
@@ -57,7 +58,7 @@ The following current web areas are intentionally outside the native POC baselin
 
 ### Module Direction
 
-The first runtime slice should normalize toward this tree:
+The runtime now normalizes toward this tree:
 
 ```txt
 src/
@@ -66,9 +67,17 @@ src/
     (tabs)/
       _layout.tsx
       explore/
+        _layout.tsx
         index.tsx
+        [activityId].tsx
       account.tsx
   features/
+    catalog/
+      components/
+      data/
+      helpers/
+      hooks/
+      models/
     shell/
       components/
   shared/
@@ -123,7 +132,7 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 - The first native shell will expose `Explorar` and `Cuenta` tabs.
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
 - Catalog reads will use curated mobile mocks before any backend or full web-model parity work is considered.
-- Detail should land later as a dedicated full-screen route, not as a modal migration.
+- Detail is implemented as a route, not as a modal migration.
 
 ## Decisions Explicitly Deferred
 

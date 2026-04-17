@@ -16,6 +16,7 @@ These are not defects in shipped code yet, but they are important gaps to track 
 - No backend contract or auth contract is documented.
 - Catalog data is still a curated in-repo mock set, so freshness and backend parity are intentionally unresolved.
 - Catalog images are copied into the repo for the curated mock set and are not yet optimized as a production asset pipeline.
+- Detail contact uses a simple external WhatsApp handoff and has no analytics, fallback contact channels, or deep-link policy yet.
 - `Cuenta` is a visible placeholder only; no auth viability work has started yet.
 
 ## Debt Recording Rule

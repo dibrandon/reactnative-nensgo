@@ -110,6 +110,7 @@ Completed result:
 Name: Detail proof of concept
 
 - Goal: add a basic detail flow from the catalog
+- Status: Completed on 2026-04-17
 - Expected outputs:
   - dedicated full-screen detail route
   - detail screen
@@ -118,6 +119,13 @@ Name: Detail proof of concept
 - Exit criteria:
   - a user can move from list to detail in the POC
   - the detail feels native rather than like a web modal port
+
+Completed result:
+
+- catalog cards now route into `/explore/[activityId]`
+- detail uses the existing lean `CatalogActivity` contract without importing web-only entities
+- the detail screen exposes key facts, location, and a simple external WhatsApp CTA
+- validation passed through `tsc --noEmit` and `expo export --platform web`
 
 ## Phase 6
 

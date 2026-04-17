@@ -8,15 +8,20 @@ import {
   nensGoRadii,
   nensGoSpacing,
 } from "@/shared/theme/tokens";
+import { AppButton } from "@/shared/ui/AppButton";
 import { AppText } from "@/shared/ui/AppText";
 import { InfoPill } from "@/shared/ui/InfoPill";
 import { SurfaceCard } from "@/shared/ui/SurfaceCard";
 
 type CatalogActivityCardProps = {
   activity: CatalogActivity;
+  onPress?: () => void;
 };
 
-export function CatalogActivityCard({ activity }: CatalogActivityCardProps) {
+export function CatalogActivityCard({
+  activity,
+  onPress,
+}: CatalogActivityCardProps) {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
 
   return (
@@ -61,6 +66,15 @@ export function CatalogActivityCard({ activity }: CatalogActivityCardProps) {
             ) : null}
           </View>
         </View>
+
+        {onPress ? (
+          <AppButton
+            label="Ver detalle"
+            variant="secondary"
+            icon="arrow-right"
+            onPress={onPress}
+          />
+        ) : null}
       </View>
     </SurfaceCard>
   );

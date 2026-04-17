@@ -116,3 +116,20 @@ Impact:
 - mock data lives inside the repo and does not depend on the sibling web project at runtime
 - image assets are copied only for the curated activity set
 - later slices must justify any contract expansion beyond card, basic detail, and simple contact needs
+
+## 2026-04-17 - ADR-0008 - Land Activity Detail As A Full-Screen Route With Simple External Contact
+
+Decision:
+
+The native POC detail experience uses a dedicated route under `explore` and a simple external WhatsApp CTA built from the existing contact phone field.
+
+Why:
+
+The web reference still contains modal-oriented detail surfaces, but that interaction model is not the right validation target for the native app. The POC needs a clear route transition and a simple contact handoff without inventing favorites, forms, or backend orchestration.
+
+Impact:
+
+- detail lives at `/explore/[activityId]`
+- catalog cards are responsible only for navigation into detail
+- contact remains an external handoff, not an in-app workflow
+- favorites and auth remain outside the detail slice

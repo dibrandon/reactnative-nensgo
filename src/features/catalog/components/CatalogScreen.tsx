@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 import { useCatalogActivities } from "@/features/catalog/hooks/useCatalogActivities";
@@ -81,7 +82,13 @@ export function CatalogScreen() {
       {!isLoading && !error && activities.length > 0 ? (
         <View style={styles.cardList}>
           {activities.map((activity) => (
-            <CatalogActivityCard key={activity.id} activity={activity} />
+            <CatalogActivityCard
+              key={activity.id}
+              activity={activity}
+              onPress={() => {
+                router.push(`/explore/${activity.id}`);
+              }}
+            />
           ))}
         </View>
       ) : null}

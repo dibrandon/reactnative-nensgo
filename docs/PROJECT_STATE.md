@@ -7,7 +7,7 @@ Last updated: 2026-04-17
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell and mock-backed catalog implemented
+- Application code: Expo Router shell, mock-backed catalog, and detail route implemented
 - Build tooling: Expo SDK 55
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -41,6 +41,7 @@ The repository now has the following operating baseline:
 - runnable Expo shell with `Explorar` and `Cuenta`
 - `src/app` router structure and shared visual baseline
 - mock-backed mobile catalog list under `src/features/catalog`
+- full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -52,11 +53,10 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
-- detail flow
 - real auth feasibility layer beyond the visible placeholder account tab
 - test baseline
 - lint or format baseline
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `004-detail-read`. The shell, shared visual baseline, and mock-backed catalog now exist, so the next slice should add a dedicated full-screen detail route and a simple contact seam without opening favorites or full auth.
+The next meaningful implementation task should implement `005-auth-feasibility`. The discovery loop now runs from catalog card to detail and simple external contact, so the next slice should evolve `Cuenta` from placeholder toward an honest auth feasibility seam without inventing backend contracts.
