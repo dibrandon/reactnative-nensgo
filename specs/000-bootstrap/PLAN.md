@@ -6,6 +6,11 @@
 - Date opened: 2026-04-17
 - Last updated: 2026-04-17
 - Branch: `main`
+- Commit type: `docs`
+- Commit scope: `sdd`
+- Commit subject draft: `establish bootstrap operating baseline`
+- Spec reference: `000-bootstrap`
+- Plan reference: `specs/000-bootstrap/PLAN.md`
 
 ## Context
 
@@ -106,6 +111,7 @@ Install the minimum SDD foundation so future React Native POC work can be scoped
 Completed on 2026-04-17.
 
 The repository now has an SDD operating baseline and a phased roadmap for future React Native POC work.
+Closed in git history with `docs(sdd): establish bootstrap operating baseline`.
 
 ## Follow-Ups
 

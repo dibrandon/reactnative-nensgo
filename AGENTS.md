@@ -85,6 +85,16 @@ After each completed task, update what changed:
 - `docs/DECISIONS_LOG.md` when a real process or architecture decision was made
 - `docs/PROJECT_STATE.md` if repo reality changed materially
 
+Every completed slice must also end with a final git commit.
+
+Commit rules:
+
+- use a Conventional Commit style subject in English
+- keep the subject brief and imperative
+- include a long-form body with `Context`, `Changes`, `Validation`, and `Follow-ups`
+- reference the active spec and plan in the commit body
+- do not use `wip` as the shared repo history standard
+
 ## Definition Of Done
 
 A task is only done when:
@@ -93,4 +103,5 @@ A task is only done when:
 - touched files stay within approved scope
 - validation was run, or inability to validate is recorded explicitly
 - docs reflect the resulting reality
+- a final slice commit exists in git history
 - remaining gaps are called out as follow-ups or debt

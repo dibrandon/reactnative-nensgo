@@ -5,7 +5,7 @@
 Last updated: 2026-04-17
 
 - Current branch: `main`
-- Git history: no commits yet
+- Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
 - Application code: absent
 - Build tooling: absent
@@ -31,16 +31,18 @@ There was no:
 
 ## What Exists Now
 
-This bootstrap task establishes the operating system for future work:
+The repository now has the following operating baseline:
 
 - repo-level agent instructions
 - plan template
 - project docs index and state docs
+- commit policy for closing slices
 - phased roadmap
 - feature registry
 - tech debt tracker
 - decisions log
 - first spec and first plan for bootstrap
+- initial git history that captures repo setup evolution
 
 ## What Still Does Not Exist
 

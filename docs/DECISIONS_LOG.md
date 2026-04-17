@@ -30,3 +30,21 @@ Impact:
 
 - the next implementation plan should assume Expo first
 - routing and state details remain open until the scaffold phase
+
+## 2026-04-17 - ADR-0003 - Close Each Completed Slice With A Traceable Commit
+
+Decision:
+
+Every completed slice must end with a final git commit that uses a Conventional Commit style subject in English and a long-form body.
+
+Why:
+
+The repository is intended for long-horizon autonomous work. A developer must be able to reconstruct scope, validation, and remaining work directly from git history if they need to take over in an emergency.
+
+Impact:
+
+- completed slices are not done until their final commit exists
+- commit subjects follow `<type>(<scope>): <imperative summary>`
+- commit bodies must include `Context`, `Changes`, `Validation`, and `Follow-ups`
+- each closing commit must reference its active spec and plan
+- `wip` is not the standard shared history format for this repository

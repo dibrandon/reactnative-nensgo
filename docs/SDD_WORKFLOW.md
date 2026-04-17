@@ -71,7 +71,43 @@ Run the strongest validation the repo supports:
 
 If validation cannot run, record why.
 
-### 7. Close Out The Slice
+### 7. Create The Final Slice Commit
+
+Every completed slice must end with one final commit that closes the work.
+
+Required subject format:
+
+- `<type>(<scope>): <imperative summary>`
+
+Allowed types:
+
+- `feat`
+- `fix`
+- `docs`
+- `chore`
+- `refactor`
+- `test`
+- `build`
+- `ci`
+- `perf`
+
+Commit rules:
+
+- use English for the commit subject
+- keep the subject short and scannable
+- include these body sections in this order:
+  - `Context`
+  - `Changes`
+  - `Validation`
+  - `Follow-ups`
+- include:
+  - `Spec: <id-slug>`
+  - `Plan: specs/<id-slug>/PLAN.md`
+- choose the commit type by the primary outcome of the slice
+- if a slice mixes docs and code, the type follows the main result, not file count
+- do not use `wip` as the standard shared history for this repo
+
+### 8. Close Out The Slice
 
 After the task, update:
 
@@ -80,6 +116,8 @@ After the task, update:
 - `docs/PROJECT_STATE.md` if repo reality changed
 - `docs/TECH_DEBT.md` if debt changed
 - `docs/DECISIONS_LOG.md` if a real decision was made
+
+A slice is not complete until both the docs and the final commit exist.
 
 ## Anti-Patterns
 
@@ -90,3 +128,4 @@ Do not:
 - mark partial work as complete
 - invent missing backend or auth behavior
 - touch broad areas of the repo without declaring scope first
+- use `wip` commits as the documented shared history standard

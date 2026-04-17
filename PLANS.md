@@ -27,6 +27,11 @@ Copy the structure below into the relevant `specs/.../PLAN.md`.
 - Date opened: YYYY-MM-DD
 - Last updated: YYYY-MM-DD
 - Branch: <branch-name>
+- Commit type: docs | chore | feat | fix | refactor | test | build | ci | perf
+- Commit scope: <scope>
+- Commit subject draft: <imperative summary in English>
+- Spec reference: <id-slug>
+- Plan reference: specs/<id-slug>/PLAN.md
 
 ## Context
 
@@ -90,13 +95,16 @@ What actually shipped, what did not, and why.
 ## Planning Rules
 
 - Plans must describe current reality, not imagined code.
+- Writing a `PLAN.md` is not by itself a closure event; the closing commit happens when the full slice is completed.
 - Touched files must stay narrow.
 - If scope expands, update the plan before editing new files.
 - Do not collapse roadmap items together just because they look related.
 - Record blockers instead of silently working around missing inputs.
+- A plan is not fully closed until the slice has its final git commit.
 
 ## Validation Rules
 
 - Prefer real validation over narrative claims.
 - If no build or tests exist yet, record that clearly.
 - For POC work, include smoke checks and manual verification steps when automated validation is absent.
+- Closing commits should include enough validation detail that another developer can understand what was actually checked.
