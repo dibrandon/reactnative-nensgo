@@ -2,13 +2,13 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-18
 - Last updated: 2026-04-18
 - Branch: `main`
-- Commit type: `feat`
+- Commit type: `docs`
 - Commit scope: `catalog`
-- Commit subject draft: `add native search and filter demo flow`
+- Commit subject draft: `close slice 009 search and filters demo`
 - Spec reference: `009-native-explore-search-filters`
 - Plan reference: `specs/009-native-explore-search-filters/PLAN.md`
 
@@ -101,6 +101,18 @@ Deliver a demo-ready native explore flow where families can search, filter, and 
   - back preserves state from detail and filters
   - empty state recovers through `Mostrar todo`
 
+Validation run on 2026-04-18:
+
+- ran `npm.cmd run typecheck`
+- ran `cmd /c npx expo export --platform web`
+- confirmed the exported route tree now includes `/explore/filters`
+- confirmed from the implemented provider and screen wiring that:
+  - search is separate from active filter counting
+  - filter options come from the base mock dataset
+  - filters only apply on `Aplicar`
+  - detail and filters share the same back-or-fallback rule
+- Expo Go manual smoke test was not run in this session
+
 ## Definition Of Done
 
 - `Explorar` supports search and filters with preserved state
@@ -112,7 +124,17 @@ Deliver a demo-ready native explore flow where families can search, filter, and 
 
 ## Outcome
 
-Slice opened on 2026-04-18. Implementation is in progress.
+Completed on 2026-04-18.
+
+The repo now has a demo-oriented native explore flow with stack-scoped state,
+text search, stable base-derived filters, active chips, empty-state recovery,
+and consistent back fallback behavior between filters and detail.
+Closed in git history with:
+
+- `docs(catalog): open slice 009 for native search and filters demo`
+- `feat(catalog): add shared explore state and filter logic`
+- `feat(catalog): add filters route and explore demo flow`
+- `docs(catalog): close slice 009 search and filters demo`
 
 ## Follow-Ups
 

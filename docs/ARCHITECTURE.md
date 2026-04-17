@@ -2,7 +2,7 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-18, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, a full-screen detail route, an account feasibility surface, and the repo SDD documents.
+As of 2026-04-18, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, explore-scoped search and filters, a full-screen detail route, an account feasibility surface, and the repo SDD documents.
 
 The repository currently contains:
 
@@ -10,11 +10,13 @@ The repository currently contains:
 - Expo SDK 54 runtime dependencies
 - `src/app` driven by Expo Router
 - a catalog-backed `Explorar` tab plus a placeholder `Cuenta` tab
+- stack-scoped explore state for search, filters, counts, and result derivation
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
 - shell-specific placeholder composition built on the shared visual layer
 - `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, and mobile card/list composition
 - a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
+- a dedicated filters route under `src/app/(tabs)/explore/filters.tsx`
 - `src/features/account` with an auth feasibility model and account surface for the `Cuenta` tab
 
 ## Provisional Target Architecture For The POC
@@ -46,6 +48,7 @@ The intended native interpretation is:
 
 - a focused family loop centered on discovering activities
 - a short, app-like `Explorar` entry point instead of a long editorial landing
+- a full-screen filters route with draft application semantics instead of dense in-list web controls
 - a full-screen detail route instead of a modal detail overlay
 - an early visible `Cuenta` surface as an auth placeholder, not real auth
 
@@ -70,6 +73,7 @@ src/
       explore/
         _layout.tsx
         index.tsx
+        filters.tsx
         [activityId].tsx
       account.tsx
   features/
@@ -94,7 +98,7 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 
 - app shell and navigation
 - shared UI or theme primitives
-- feature modules for catalog and account
+- feature modules for catalog and account, including explore-scoped state
 - mock data or adapters only when a slice actually needs them
 - configuration and environment boundaries
 

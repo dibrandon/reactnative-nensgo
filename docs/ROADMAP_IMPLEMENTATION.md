@@ -178,7 +178,7 @@ Completed result:
 Name: Demo-oriented native explore refinement
 
 - Goal: sharpen the POC demo around native catalog search, filtering, and preserved back navigation context
-- Status: In Progress on 2026-04-18
+- Status: Completed on 2026-04-18
 - Expected outputs:
   - shared explore state under the explore stack
   - text search across the current lean mobile catalog fields
@@ -188,6 +188,13 @@ Name: Demo-oriented native explore refinement
   - the demo story is `Explorar + buscar + filtrar`
   - search and filters survive round-trips into filters and detail
   - `Cuenta` remains secondary and detail remains functional but non-protagonist
+
+Completed result:
+
+- `Explorar` now exposes visible search, filter entry, counts, chips, and empty-state recovery
+- `/explore/filters` now exists as a full-screen draft-based filter screen
+- the explore stack now preserves state across catalog, filters, and detail
+- detail back behavior now follows the same back-or-fallback rule as the filters flow
 
 ## Sequencing Rule
 

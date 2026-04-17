@@ -166,3 +166,21 @@ Impact:
 - current repo state and architecture docs now reflect SDK 54 as the runtime baseline
 - the POC behavior stays the same; only the Expo runtime compatibility layer changed
 - future upgrades should be deliberate, not automatic, once Expo Go support and project needs align again
+
+## 2026-04-18 - ADR-0011 - Keep Demo Search And Filters Scoped To The Explore Stack
+
+Decision:
+
+The demo-oriented search and filter flow lives in explore-scoped in-memory state and uses a dedicated full-screen filters route inside the existing explore stack.
+
+Why:
+
+The immediate demo goal is to prove native discovery quality, not to introduce app-wide state, persistence, or web-style filter chrome. Keeping the state local to the explore stack preserves context through filters and detail while staying reversible and easy to reason about.
+
+Impact:
+
+- search and filters are preserved while moving between `Explorar`, `Filtros`, and detail
+- `searchQuery` is separate from active filter counting
+- filter options derive from the full base mock dataset instead of shrinking with current results
+- filters apply only when the draft screen confirms `Aplicar`
+- no persistence or cross-tab synchronization is implied by this slice

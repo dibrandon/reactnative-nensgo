@@ -7,7 +7,7 @@ Last updated: 2026-04-18
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell, mock-backed catalog, detail route, and account feasibility surface implemented
+- Application code: Expo Router shell, mock-backed catalog with search and filters, detail route, and account feasibility surface implemented
 - Build tooling: Expo SDK 54
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -45,7 +45,7 @@ The repository now has the following operating baseline:
 - account auth-feasibility surface under `src/features/account`
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
-- a reopened demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
+- a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -64,11 +64,11 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-The repository is no longer in a fully closed POC state.
+No further approved POC slices are currently open.
 
 Current next action:
 
-- finish slice `009-native-explore-search-filters` so the demo centers on native discovery, not just a static list
+- use the repo as the demo baseline for `Explorar + buscar + filtrar`
 - then decide whether the product should continue as a narrow mobile experience or stay as a reference POC
 
 Current runtime note:
