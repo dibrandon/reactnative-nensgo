@@ -11,6 +11,7 @@ This directory contains the operational source of truth for the repository.
 5. [Tech Debt](./TECH_DEBT.md)
 6. [SDD Workflow](./SDD_WORKFLOW.md)
 7. [Decisions Log](./DECISIONS_LOG.md)
+8. [POC Evaluation](./POC_EVALUATION.md)
 
 ## Purpose Of Each Document
 
@@ -21,6 +22,7 @@ This directory contains the operational source of truth for the repository.
 - `TECH_DEBT.md`: shortcuts, unresolved technical gaps, and known future cleanup
 - `SDD_WORKFLOW.md`: required way of working for future tasks
 - `DECISIONS_LOG.md`: durable record of architectural and process decisions
+- `POC_EVALUATION.md`: final technical judgment on what the native POC proves and whether to continue
 
 ## Usage Rule
 

@@ -43,6 +43,7 @@ The repository now has the following operating baseline:
 - mock-backed mobile catalog list under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
 - account auth-feasibility surface under `src/features/account`
+- final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -54,10 +55,14 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
+- backend-backed catalog reads
 - real auth runtime beyond the visible feasibility layer
 - test baseline
 - lint or format baseline
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `006-poc-evaluation`. The native POC now covers shell, visual system, catalog, detail, and auth feasibility framing, so the repo should close with an honest recommendation on whether continuing into production-oriented work makes sense.
+No further POC implementation slices remain. The next action is a decision:
+
+- continue with a new production-oriented roadmap if the mobile product stays narrow
+- or stop here and keep the repo as a validated native reference implementation

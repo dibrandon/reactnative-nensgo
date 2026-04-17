@@ -12,4 +12,4 @@ Last updated: 2026-04-17
 | `003-catalog-read` | Public catalog proof of concept | Completed | `Explorar` now renders a mock-backed list with lean mobile cards and no detail leakage yet. |
 | `004-detail-read` | Detail proof of concept | Completed | Catalog cards now open a full-screen route with facts, location, and simple external contact. |
 | `005-auth-feasibility` | Auth feasibility layer | Completed | `Cuenta` now documents current anonymous state, missing inputs, and the proposed mobile auth path. |
-| `006-poc-evaluation` | POC evaluation and recommendation | Planned | Next target. Wrap-up phase after functional slices exist. |
+| `006-poc-evaluation` | POC evaluation and recommendation | Completed | Final repo evaluation now states what the native POC proves, what it does not prove, and when continuation still makes sense. |
