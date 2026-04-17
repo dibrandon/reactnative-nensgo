@@ -17,6 +17,7 @@ export const nensGoColors = {
   pink: "#F38AA2",
   tabInactive: "#8A93BC",
   shadow: "rgba(47, 61, 115, 0.14)",
+  shadowSoft: "rgba(75, 143, 231, 0.12)",
 } as const;
 
 export const nensGoSpacing = {
@@ -43,4 +44,14 @@ export const nensGoTypography = {
   body: 16,
   meta: 14,
   micro: 12,
+} as const;
+
+export const nensGoShadows = {
+  card: {
+    shadowColor: nensGoColors.text,
+    shadowOpacity: 0.1,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 12 },
+    elevation: 5,
+  },
 } as const;

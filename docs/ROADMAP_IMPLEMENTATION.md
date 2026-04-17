@@ -68,12 +68,20 @@ Completed result:
 Name: Visual system and tokens
 
 - Goal: define the minimum design primitives needed for consistent screens
+- Status: Completed on 2026-04-17
 - Expected outputs:
   - theme tokens
   - typography and spacing baseline
   - a minimal shared component layer
 - Exit criteria:
   - navigation shell and first feature screens can share visual primitives
+
+Completed result:
+
+- Nunito Sans is loaded as the shared app font family
+- shared text, button, surface, screen, and brand components now exist under `src/shared/ui`
+- the shell and not-found route now use the shared visual system instead of screen-local styling
+- validation passed through `tsc --noEmit` and `expo export --platform web`
 
 ## Phase 4
 

@@ -39,7 +39,7 @@ The repository now has the following operating baseline:
 - commit policy for closing slices
 - native POC umbrella spec and first executable shell plan
 - runnable Expo shell with `Explorar` and `Cuenta`
-- `src/app` router structure and minimum shared theme tokens
+- `src/app` router structure and shared visual baseline
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -51,7 +51,6 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
-- visual design system
 - catalog flow
 - detail flow
 - real auth feasibility layer beyond the visible placeholder account tab
@@ -60,4 +59,4 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `002-visual-system`. The Expo shell already exists, so the next slice should consolidate the shared visual primitives before catalog and detail work begins.
+The next meaningful implementation task should implement `003-catalog-read`. The shell and shared visual baseline now exist, so the next slice should introduce a lean mobile catalog contract, mock-backed read path, and mobile-first list surface without opening detail or auth too early.

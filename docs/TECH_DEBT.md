@@ -4,7 +4,7 @@ Last updated: 2026-04-17
 
 ## Current Debt Reality
 
-There is no implementation debt yet because there is no application code in the repository.
+The repository now has runnable Expo code, so debt tracking is no longer theoretical. Current debt is still acceptable for a POC, but it is real and should remain explicit.
 
 ## Known Structural Gaps To Track
 
@@ -12,7 +12,7 @@ These are not defects in shipped code yet, but they are important gaps to track 
 
 - App icons and generated Expo assets are still scaffold-level, not curated NensGo production assets.
 - No lint, format, test, or CI baseline exists.
-- The shared UI layer is still intentionally thin and shell-biased.
+- The shared UI layer is intentionally thin and still biased toward shell, catalog, and detail surfaces only.
 - No backend contract or auth contract is documented.
 - No mock data strategy has been implemented yet.
 - `Cuenta` is a visible placeholder only; no auth viability work has started yet.

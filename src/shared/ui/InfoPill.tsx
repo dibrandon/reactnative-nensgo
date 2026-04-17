@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
+import { AppText } from "@/shared/ui/AppText";
 import {
   nensGoColors,
   nensGoRadii,
   nensGoSpacing,
-  nensGoTypography,
 } from "@/shared/theme/tokens";
 
 type InfoPillProps = {
@@ -15,7 +15,9 @@ type InfoPillProps = {
 export function InfoPill({ label, tone = "soft" }: InfoPillProps) {
   return (
     <View style={[styles.base, pillToneStyles[tone]]}>
-      <Text style={[styles.label, labelToneStyles[tone]]}>{label}</Text>
+      <AppText variant="eyebrow" style={[styles.label, labelToneStyles[tone]]}>
+        {label}
+      </AppText>
     </View>
   );
 }
@@ -27,10 +29,7 @@ const styles = StyleSheet.create({
     paddingVertical: nensGoSpacing.sm,
   },
   label: {
-    fontSize: nensGoTypography.micro,
-    fontWeight: "700",
     letterSpacing: 0.5,
-    textTransform: "uppercase",
   },
 });
 

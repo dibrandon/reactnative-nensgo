@@ -2,15 +2,17 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture contains a runnable Expo shell plus the repo SDD documents.
+As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, and the repo SDD documents.
 
 The repository currently contains:
 
 - SDD operating documents
 - Expo SDK 55 runtime dependencies
 - `src/app` driven by Expo Router
-- shell-specific placeholder screens for `Explorar` and `Cuenta`
-- minimal shared theme tokens and one shell-specific placeholder component
+- branded placeholder screens for `Explorar` and `Cuenta`
+- shared theme tokens plus typography primitives
+- reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
+- shell-specific placeholder composition built on the shared visual layer
 
 ## Provisional Target Architecture For The POC
 
@@ -81,6 +83,8 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 - mock data or adapters only when a slice actually needs them
 - configuration and environment boundaries
 
+The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell screens. The next slices should extend those areas only when the catalog and detail flows need additional primitives.
+
 ### Data Boundary Direction
 
 The mobile POC should not inherit the full current web domain shape by default.
@@ -115,6 +119,7 @@ Do not expand this contract into a mirror of the current web model unless a late
 - The native POC will validate a focused family loop instead of web parity.
 - Expo Router will be used for the shell slice.
 - The first native shell will expose `Explorar` and `Cuenta` tabs.
+- The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
 - Detail should land later as a dedicated full-screen route, not as a modal migration.
 
 ## Decisions Explicitly Deferred

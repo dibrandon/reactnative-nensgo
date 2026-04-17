@@ -82,3 +82,20 @@ Impact:
 - root config files remain at the repo root
 - routed screens live under `src/app`
 - future shell, catalog, detail, and account slices should follow the `src`-first structure
+
+## 2026-04-17 - ADR-0006 - Establish A Thin Shared Visual Baseline Before Catalog Work
+
+Decision:
+
+Before adding catalog and detail behavior, the native POC will use a small shared visual system built around reusable typography, surface, button, brand, and screen framing primitives.
+
+Why:
+
+The shell was already running, but its styling was still tied too closely to placeholder screens. Landing catalog and detail directly on top of screen-local styles would create churn and make the POC feel like a template adaptation instead of a deliberate native build.
+
+Impact:
+
+- Nunito Sans is the shared font family for the current baseline
+- shared primitives live under `src/shared/ui`
+- shell screens and the fallback route use the same visual layer
+- later feature slices should extend the visual system only when a new feature surface genuinely requires it
