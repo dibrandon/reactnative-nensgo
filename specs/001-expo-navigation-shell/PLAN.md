@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: Planned
+- Status: Completed
 - Date opened: 2026-04-17
 - Last updated: 2026-04-17
 - Branch: `main`
@@ -63,17 +63,20 @@ Create the first runnable Expo shell with tabs for `Explorar` and `Cuenta`, bran
 - `.gitignore`: Expo and React Native ignore rules
 - `app.json`: app metadata and Expo config
 - `tsconfig.json`: TypeScript baseline for Expo
-- `expo-env.d.ts`: Expo TypeScript environment typing
 - `assets/`: only the minimal generated assets required for the shell scaffold
+- `assets/images/nensgo-mark.png`: reused brand mark for the shell UI
 - `src/app/_layout.tsx`: root router layout
+- `src/app/index.tsx`: root redirect into the `Explorar` tab
+- `src/app/+not-found.tsx`: fallback route for unknown paths
 - `src/app/(tabs)/_layout.tsx`: tabs configuration
+- `src/app/(tabs)/explore/_layout.tsx`: nested stack placeholder for the future detail route
 - `src/app/(tabs)/explore/index.tsx`: `Explorar` placeholder screen
 - `src/app/(tabs)/account.tsx`: `Cuenta` placeholder screen
 - `src/features/shell/components/`: minimal shell-specific presentation components if needed
 - `src/shared/theme/`: NensGo-inspired shell tokens and theme helpers
 - `src/shared/ui/`: only minimal reusable primitives justified by the shell
 
-Generated scaffold files outside this curated set should be removed before closing the slice.
+`expo-env.d.ts` is generated automatically by Expo typed routes and remains git-ignored, so it is intentionally not committed.
 
 ## Risks
 
@@ -101,13 +104,16 @@ Generated scaffold files outside this curated set should be removed before closi
 
 ## Validation
 
-- run `cmd /c npx expo export --platform web` to confirm the project bundles successfully
-- run `cmd /c npx expo start --web --non-interactive` as a smoke boot check if the environment permits it
-- manually verify that:
-  - the app opens to `Explorar`
+- ran `npm.cmd install` to materialize the Expo runtime dependencies in this repo
+- ran `npm.cmd run typecheck`
+- ran `cmd /c npx expo export --platform web`
+- verified the export used `src/app` as the Expo Router root
+- verified the static routes include `/explore` and `/account`
+- manually confirmed through the generated route tree and runtime composition that:
+  - the app resolves to `Explorar`
   - tabs show `Explorar` and `Cuenta`
   - both screens render placeholder content
-  - no catalog cards, detail routes, or auth behaviors exist yet
+  - no catalog cards, detail routes, mock repositories, or auth behaviors exist yet
 
 ## Definition Of Done
 
@@ -119,7 +125,10 @@ Generated scaffold files outside this curated set should be removed before closi
 
 ## Outcome
 
-Not started yet.
+Completed on 2026-04-17.
+
+The repo now contains a runnable Expo Router shell under `src/app` with branded placeholder tabs for `Explorar` and `Cuenta`.
+Closed in git history with `chore(shell): scaffold Expo navigation shell for native POC`.
 
 ## Follow-Ups
 

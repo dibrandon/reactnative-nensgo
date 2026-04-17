@@ -2,14 +2,15 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture is documentation-only.
+As of 2026-04-17, the implemented architecture contains a runnable Expo shell plus the repo SDD documents.
 
 The repository currently contains:
 
 - SDD operating documents
-- no application runtime
-- no source tree
-- no dependency graph
+- Expo SDK 55 runtime dependencies
+- `src/app` driven by Expo Router
+- shell-specific placeholder screens for `Explorar` and `Cuenta`
+- minimal shared theme tokens and one shell-specific placeholder component
 
 ## Provisional Target Architecture For The POC
 

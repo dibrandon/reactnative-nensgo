@@ -41,6 +41,7 @@ Name: SDD foundation and repo bootstrap
 Name: Expo scaffold and navigation shell
 
 - Goal: create the first runnable mobile shell
+- Status: Completed on 2026-04-17
 - Expected outputs:
   - Expo app scaffold
   - TypeScript baseline
@@ -54,6 +55,13 @@ Name: Expo scaffold and navigation shell
   - both tabs are reachable
   - no catalog, detail, auth, or data work is smuggled into this slice
   - touched files are limited to app setup and shell concerns
+
+Completed result:
+
+- Expo SDK 55 runtime added to the repo
+- `src/app` now drives Expo Router
+- `Explorar` and `Cuenta` render branded placeholder screens
+- validation passed through `tsc --noEmit` and `expo export --platform web`
 
 ## Phase 3
 

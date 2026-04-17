@@ -10,12 +10,12 @@ There is no implementation debt yet because there is no application code in the 
 
 These are not defects in shipped code yet, but they are important gaps to track as the POC begins:
 
-- No runnable Expo scaffold exists.
-- No package manager or dependency policy has been established in code.
+- App icons and generated Expo assets are still scaffold-level, not curated NensGo production assets.
 - No lint, format, test, or CI baseline exists.
-- No routing choice has been made inside Expo.
+- The shared UI layer is still intentionally thin and shell-biased.
 - No backend contract or auth contract is documented.
 - No mock data strategy has been implemented yet.
+- `Cuenta` is a visible placeholder only; no auth viability work has started yet.
 
 ## Debt Recording Rule
 

@@ -7,10 +7,10 @@ Last updated: 2026-04-17
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: absent
-- Build tooling: absent
-- Package manager choice: not established
-- Mobile stack in code: not established
+- Application code: Expo Router shell implemented
+- Build tooling: Expo SDK 55
+- Package manager choice: npm
+- Mobile stack in code: Expo Router + TypeScript
 - CI or quality gates: absent
 - Backend or API contract: absent
 
@@ -38,6 +38,8 @@ The repository now has the following operating baseline:
 - project docs index and state docs
 - commit policy for closing slices
 - native POC umbrella spec and first executable shell plan
+- runnable Expo shell with `Explorar` and `Cuenta`
+- `src/app` router structure and minimum shared theme tokens
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -47,19 +49,15 @@ The repository now has the following operating baseline:
 
 ## What Still Does Not Exist
 
-The repository is still not a runnable app.
-
 Missing implementation layers include:
 
-- Expo project scaffold
-- navigation shell
 - visual design system
 - catalog flow
 - detail flow
-- auth feasibility layer
+- real auth feasibility layer beyond the visible placeholder account tab
 - test baseline
 - lint or format baseline
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `001-expo-navigation-shell` only. It should create the first Expo shell with `Explorar` and `Cuenta`, and should not skip directly into catalog, detail, or auth integration work.
+The next meaningful implementation task should implement `002-visual-system`. The Expo shell already exists, so the next slice should consolidate the shared visual primitives before catalog and detail work begins.

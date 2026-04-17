@@ -66,3 +66,19 @@ Impact:
 - detail is expected later as a full-screen route, not as a modal carryover
 - `/para-centros`, `/pvi`, admin, SEO, and full auth are outside the baseline POC scope
 - future catalog slices should use a lean presentation contract instead of mirroring the current web/domain model
+
+## 2026-04-17 - ADR-0005 - Use `src/app` With Expo Router For The Native Shell
+
+Decision:
+
+The runtime shell uses Expo Router with `src/app` as the application root.
+
+Why:
+
+The repo already needed a clean separation between root config files and growing application code. Expo Router officially supports `src/app`, which fits the SDD-driven layout better and keeps future feature modules under `src`.
+
+Impact:
+
+- root config files remain at the repo root
+- routed screens live under `src/app`
+- future shell, catalog, detail, and account slices should follow the `src`-first structure
