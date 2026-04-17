@@ -8,6 +8,7 @@ import {
   getCatalogDetailFacts,
   getCatalogLocationFacts,
 } from "@/features/catalog/helpers/catalogDetailPresentation";
+import { goBackToExploreFallback } from "@/features/catalog/helpers/catalogNavigation";
 import { useCatalogActivity } from "@/features/catalog/hooks/useCatalogActivity";
 import {
   nensGoColors,
@@ -68,7 +69,7 @@ export function CatalogActivityDetailScreen() {
   const { activity, error, isLoading, reload } = useCatalogActivity(activityId);
 
   function handleGoBack() {
-    router.replace("/explore");
+    goBackToExploreFallback();
   }
 
   async function handleOpenContact() {
