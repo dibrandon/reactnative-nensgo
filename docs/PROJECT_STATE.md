@@ -7,7 +7,7 @@ Last updated: 2026-04-17
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell implemented
+- Application code: Expo Router shell and mock-backed catalog implemented
 - Build tooling: Expo SDK 55
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -40,6 +40,7 @@ The repository now has the following operating baseline:
 - native POC umbrella spec and first executable shell plan
 - runnable Expo shell with `Explorar` and `Cuenta`
 - `src/app` router structure and shared visual baseline
+- mock-backed mobile catalog list under `src/features/catalog`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -51,7 +52,6 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
-- catalog flow
 - detail flow
 - real auth feasibility layer beyond the visible placeholder account tab
 - test baseline
@@ -59,4 +59,4 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-The next meaningful implementation task should implement `003-catalog-read`. The shell and shared visual baseline now exist, so the next slice should introduce a lean mobile catalog contract, mock-backed read path, and mobile-first list surface without opening detail or auth too early.
+The next meaningful implementation task should implement `004-detail-read`. The shell, shared visual baseline, and mock-backed catalog now exist, so the next slice should add a dedicated full-screen detail route and a simple contact seam without opening favorites or full auth.

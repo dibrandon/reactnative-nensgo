@@ -88,6 +88,7 @@ Completed result:
 Name: Public catalog proof of concept
 
 - Goal: render a browsable catalog with mock or adapter-backed data
+- Status: Completed on 2026-04-17
 - Expected outputs:
   - list screen
   - item card primitive
@@ -96,6 +97,13 @@ Name: Public catalog proof of concept
 - Exit criteria:
   - catalog can be demonstrated without backend dependency ambiguity
   - the mobile data contract does not mirror the full current web model without justification
+
+Completed result:
+
+- `Explorar` now renders a mock-backed catalog list instead of a shell placeholder
+- the repo has a dedicated `src/features/catalog` module with model, data seam, hook, and card components
+- curated activity mocks were adapted from the current web fallback without porting raw web entities
+- validation passed through `tsc --noEmit` and `expo export --platform web`
 
 ## Phase 5
 

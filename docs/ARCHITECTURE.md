@@ -2,7 +2,7 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, and the repo SDD documents.
+As of 2026-04-17, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, and the repo SDD documents.
 
 The repository currently contains:
 
@@ -13,6 +13,7 @@ The repository currently contains:
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
 - shell-specific placeholder composition built on the shared visual layer
+- `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, and mobile card/list composition
 
 ## Provisional Target Architecture For The POC
 
@@ -83,7 +84,7 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 - mock data or adapters only when a slice actually needs them
 - configuration and environment boundaries
 
-The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell screens. The next slices should extend those areas only when the catalog and detail flows need additional primitives.
+The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell screens and the catalog list. The next slices should extend those areas only when the detail and account flows need additional primitives.
 
 ### Data Boundary Direction
 
@@ -110,7 +111,8 @@ type CatalogActivity = {
 };
 ```
 
-Do not expand this contract into a mirror of the current web model unless a later slice proves the extra fields are necessary.
+This contract now exists in code under `src/features/catalog/models/CatalogActivity.ts`.
+Do not expand it into a mirror of the current web model unless a later slice proves the extra fields are necessary.
 
 ## Decisions Already Made
 
@@ -120,6 +122,7 @@ Do not expand this contract into a mirror of the current web model unless a late
 - Expo Router will be used for the shell slice.
 - The first native shell will expose `Explorar` and `Cuenta` tabs.
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
+- Catalog reads will use curated mobile mocks before any backend or full web-model parity work is considered.
 - Detail should land later as a dedicated full-screen route, not as a modal migration.
 
 ## Decisions Explicitly Deferred

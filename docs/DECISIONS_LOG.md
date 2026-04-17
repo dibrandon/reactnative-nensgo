@@ -99,3 +99,20 @@ Impact:
 - shared primitives live under `src/shared/ui`
 - shell screens and the fallback route use the same visual layer
 - later feature slices should extend the visual system only when a new feature surface genuinely requires it
+
+## 2026-04-17 - ADR-0007 - Use Curated Mobile Catalog Mocks Instead Of Porting The Full Web Fallback
+
+Decision:
+
+The native catalog slice uses a curated mobile `CatalogActivity` dataset and a small repository seam instead of importing the full web fallback entities or reproducing their raw fields in runtime code.
+
+Why:
+
+The POC needs enough realism to validate scanning, card design, and future detail flow, but it does not need full domain parity. Pulling raw `activities`, `centers`, and `cities` structures into native would expand the contract early and make later changes harder to reason about.
+
+Impact:
+
+- the mobile catalog contract stays presentation-oriented
+- mock data lives inside the repo and does not depend on the sibling web project at runtime
+- image assets are copied only for the curated activity set
+- later slices must justify any contract expansion beyond card, basic detail, and simple contact needs

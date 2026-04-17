@@ -14,7 +14,8 @@ These are not defects in shipped code yet, but they are important gaps to track 
 - No lint, format, test, or CI baseline exists.
 - The shared UI layer is intentionally thin and still biased toward shell, catalog, and detail surfaces only.
 - No backend contract or auth contract is documented.
-- No mock data strategy has been implemented yet.
+- Catalog data is still a curated in-repo mock set, so freshness and backend parity are intentionally unresolved.
+- Catalog images are copied into the repo for the curated mock set and are not yet optimized as a production asset pipeline.
 - `Cuenta` is a visible placeholder only; no auth viability work has started yet.
 
 ## Debt Recording Rule
