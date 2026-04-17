@@ -14,3 +14,4 @@ Last updated: 2026-04-18
 | `005-auth-feasibility` | Auth feasibility layer | Completed | `Cuenta` now documents current anonymous state, missing inputs, and the proposed mobile auth path. |
 | `006-poc-evaluation` | POC evaluation and recommendation | Completed | Final repo evaluation now states what the native POC proves, what it does not prove, and when continuation still makes sense. |
 | `008-expo-go-sdk-54-compat` | Expo Go SDK 54 compatibility | Completed | Downgraded the runtime from SDK 55 to SDK 54 so the app can be opened on a physical phone with the default Expo Go store build. |
+| `009-native-explore-search-filters` | Native explore search and filters demo | In Progress | Reopens the POC with a demo-focused `Explorar + buscar + filtrar` slice while keeping detail secondary and `Cuenta` non-functional in the demo story. |

@@ -23,6 +23,12 @@ The following are explicitly out of the POC baseline unless a later slice reopen
 - complex filters
 - SEO or web parity work
 
+The current reopened demo slice still keeps the scope narrow. It adds only:
+
+- simple text search
+- three stable filters: `city`, `category`, and `ageBand`
+- a dedicated filters screen with preserved explore state
+
 ## Phase 1
 
 Name: SDD foundation and repo bootstrap
@@ -166,6 +172,22 @@ Completed result:
 - `docs/POC_EVALUATION.md` now captures validated outcomes, open gaps, and continuation criteria
 - top-level repo docs now show all planned POC slices as completed
 - the repo now closes with a technical recommendation instead of an implicit "keep building" assumption
+
+## Phase 8
+
+Name: Demo-oriented native explore refinement
+
+- Goal: sharpen the POC demo around native catalog search, filtering, and preserved back navigation context
+- Status: In Progress on 2026-04-18
+- Expected outputs:
+  - shared explore state under the explore stack
+  - text search across the current lean mobile catalog fields
+  - a full-screen filters route
+  - active filter feedback and empty-state recovery
+- Exit criteria:
+  - the demo story is `Explorar + buscar + filtrar`
+  - search and filters survive round-trips into filters and detail
+  - `Cuenta` remains secondary and detail remains functional but non-protagonist
 
 ## Sequencing Rule
 

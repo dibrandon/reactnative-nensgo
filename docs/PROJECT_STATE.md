@@ -45,6 +45,7 @@ The repository now has the following operating baseline:
 - account auth-feasibility surface under `src/features/account`
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
+- a reopened demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -63,10 +64,12 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-No further POC implementation slices remain. The next action is a decision:
+The repository is no longer in a fully closed POC state.
 
-- continue with a new production-oriented roadmap if the mobile product stays narrow
-- or stop here and keep the repo as a validated native reference implementation
+Current next action:
+
+- finish slice `009-native-explore-search-filters` so the demo centers on native discovery, not just a static list
+- then decide whether the product should continue as a narrow mobile experience or stay as a reference POC
 
 Current runtime note:
 
