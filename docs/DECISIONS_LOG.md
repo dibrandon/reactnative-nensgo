@@ -184,3 +184,20 @@ Impact:
 - filter options derive from the full base mock dataset instead of shrinking with current results
 - filters apply only when the draft screen confirms `Aplicar`
 - no persistence or cross-tab synchronization is implied by this slice
+
+## 2026-04-18 - ADR-0012 - Keep Visible Runtime Copy Product-Facing And Move Account Back To A Static Demo Surface
+
+Decision:
+
+The visible runtime should read like a product demo rather than an internal POC explainer, and the mounted `Cuenta` tab should use a static user mock instead of the previous auth-feasibility screen.
+
+Why:
+
+The previous runtime exposed too much internal rationale across routed screens, especially in `Cuenta`. That was useful for repo exploration, but not for a human-facing demo. The account screen now needs to look credible without pretending that auth exists.
+
+Impact:
+
+- routed screens keep short product-facing or operational copy only
+- the only visible meta badge kept in runtime is the account badge, now labeled `Demo 5`
+- `Cuenta` shows a static user mock with fake favorites instead of an auth explainer
+- auth feasibility remains repo knowledge and future work context, not mounted runtime narration

@@ -2,13 +2,13 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-18
 - Last updated: 2026-04-18
 - Branch: `main`
 - Commit type: `docs`
 - Commit scope: `ui`
-- Commit subject draft: `open slice 010 for runtime copy cleanup`
+- Commit subject draft: `close slice 010 account mock and copy cleanup`
 - Spec reference: `010-demo-copy-cleanup-and-account-mock`
 - Plan reference: `specs/010-demo-copy-cleanup-and-account-mock/PLAN.md`
 
@@ -91,6 +91,18 @@ Make the routed runtime feel product-facing while preserving the existing behavi
   - `Demo 5` badge in `Cuenta`
   - static favorites rows that stay non-functional
 
+Validation run on 2026-04-18:
+
+- ran `npm.cmd run typecheck` after the account mock replacement
+- ran `npm.cmd run typecheck` after the runtime copy cleanup
+- ran `cmd /c npx expo export --platform web` after the runtime copy cleanup
+- confirmed the exported route tree still includes `account`, `explore`, `explore/filters`, and `explore/[activityId]`
+- confirmed from the routed screen code that:
+  - `Cuenta` now mounts the static account mock screen
+  - the account badge reads `Demo 5`
+  - `Explorar` no longer renders the meta status card
+  - `Filtros`, detail, and `+not-found` no longer present visible POC/process narration
+
 ## Definition Of Done
 
 - routed runtime screens read like product surfaces instead of internal demo notes
@@ -101,7 +113,18 @@ Make the routed runtime feel product-facing while preserving the existing behavi
 
 ## Outcome
 
-Slice opened on 2026-04-18. Implementation is in progress.
+Completed on 2026-04-18.
+
+The visible runtime now reads like a product-facing demo instead of an internal
+POC explainer layer. `Cuenta` mounts a static user mock with `USUARIO`,
+`Sitges`, and fake favorites sourced from the current catalog, while
+`Explorar`, `Filtros`, detail, and not-found now use shorter functional copy.
+Closed in git history with:
+
+- `docs(ui): open slice 010 for runtime copy cleanup`
+- `feat(account): replace feasibility screen with demo user mock`
+- `feat(ui): remove meta copy from routed runtime surfaces`
+- `docs(ui): close slice 010 account mock and copy cleanup`
 
 ## Follow-Ups
 

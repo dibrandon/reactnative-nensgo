@@ -201,7 +201,7 @@ Completed result:
 Name: Product-facing runtime cleanup
 
 - Goal: remove visible meta narration from routed runtime screens and turn `Cuenta` into a static demo-friendly user mock
-- Status: In Progress on 2026-04-18
+- Status: Completed on 2026-04-18
 - Expected outputs:
   - account mock screen with visible `USUARIO` and fake favorites
   - removal of demo/POC/process narration from routed screens
@@ -210,6 +210,13 @@ Name: Product-facing runtime cleanup
   - `Explorar`, `Filtros`, detail, `Cuenta`, and not-found read like runtime product surfaces
   - the account badge reads `Demo 5`
   - no dead visible account feasibility path remains mounted in the router
+
+Completed result:
+
+- `Cuenta` now mounts a static demo profile with `USUARIO`, `Sitges`, and fake favorites
+- the visible runtime no longer shows the former account feasibility explainer
+- `Explorar`, `Filtros`, detail, and not-found now use shorter product-facing copy
+- the former feasibility-only account artifacts were removed from the mounted runtime path
 
 ## Sequencing Rule
 

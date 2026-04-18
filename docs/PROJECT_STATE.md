@@ -7,7 +7,7 @@ Last updated: 2026-04-18
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell, mock-backed catalog with search and filters, detail route, and account feasibility surface implemented
+- Application code: Expo Router shell, mock-backed catalog with search and filters, detail route, and static account mock surface implemented
 - Build tooling: Expo SDK 54
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -42,7 +42,7 @@ The repository now has the following operating baseline:
 - `src/app` router structure and shared visual baseline
 - mock-backed mobile catalog list under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
-- an account feature module currently transitioning away from the visible auth-feasibility surface
+- an account feature module with a mounted static demo user mock
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
 - a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
@@ -58,7 +58,7 @@ The repository now has the following operating baseline:
 Missing implementation layers include:
 
 - backend-backed catalog reads
-- real auth runtime beyond the visible feasibility layer
+- real auth runtime beyond the visible account mock
 - test baseline
 - lint or format baseline
 
@@ -68,7 +68,7 @@ No further approved POC slices are currently open.
 
 Current next action:
 
-- finish slice `010-demo-copy-cleanup-and-account-mock` so the visible runtime reads like product instead of internal narration
+- use the repo as the demo baseline with product-facing runtime copy and the mounted account mock
 - then decide whether the product should continue as a narrow mobile experience or stay as a reference POC
 
 Current runtime note:
