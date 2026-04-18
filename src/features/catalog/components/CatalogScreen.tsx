@@ -98,6 +98,8 @@ export function CatalogScreen() {
     hasActiveFilters,
     hasSearchQuery,
     hasAnyExploreConstraint,
+    isFavorite,
+    toggleFavorite,
   } = useCatalogExplore();
   const activityCountLabel = `${resultsCount} actividades`;
   const filterChipEntries = [
@@ -268,6 +270,10 @@ export function CatalogScreen() {
             <View key={activity.id} style={styles.cardGridItem}>
               <CatalogActivityCard
                 activity={activity}
+                isFavorite={isFavorite(activity.id)}
+                onToggleFavorite={() => {
+                  toggleFavorite(activity.id);
+                }}
                 onPress={() => {
                   router.push(`/explore/${activity.id}`);
                 }}

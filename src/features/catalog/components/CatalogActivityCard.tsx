@@ -13,6 +13,8 @@ import { SurfaceCard } from "@/shared/ui/SurfaceCard";
 
 type CatalogActivityCardProps = {
   activity: CatalogActivity;
+  isFavorite: boolean;
+  onToggleFavorite?: () => void;
   onPress?: () => void;
 };
 
@@ -50,6 +52,8 @@ function CardBadge({
 
 export function CatalogActivityCard({
   activity,
+  isFavorite,
+  onToggleFavorite,
   onPress,
 }: CatalogActivityCardProps) {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
@@ -58,49 +62,64 @@ export function CatalogActivityCard({
       <View style={styles.mediaWrap}>
         <Image source={imageSource} style={styles.image} />
         <View style={styles.topRow}>
-          {activity.categoryLabel ? (
-            <CardBadge label={activity.categoryLabel} tone="primary" />
-          ) : null}
           {activity.isFree ? <CardBadge label="Gratis" tone="warm" /> : null}
+          <Pressable
+            accessibilityRole="button"
+            onPress={(event) => {
+              event.stopPropagation();
+              onToggleFavorite?.();
+            }}
+            hitSlop={8}
+            style={({ pressed }) => [
+              styles.favoriteButton,
+              pressed && styles.favoriteButtonPressed,
+            ]}
+          >
+            <MaterialCommunityIcons
+              name={isFavorite ? "heart" : "heart-outline"}
+              size={22}
+              color={
+                isFavorite ? nensGoColors.coral : nensGoColors.primaryStrong
+              }
+            />
+          </Pressable>
         </View>
       </View>
 
       <View style={styles.content}>
+        {activity.categoryLabel ? (
+          <AppText variant="eyebrow" style={styles.categoryLabel} numberOfLines={1}>
+            {activity.categoryLabel}
+          </AppText>
+        ) : null}
+
         <View style={styles.copyBlock}>
-          <AppText variant="bodyStrong" style={styles.title} numberOfLines={2}>
+          <AppText variant="title" style={styles.title} numberOfLines={2}>
             {activity.title}
           </AppText>
-          {activity.shortDescription ? (
-            <AppText variant="meta" style={styles.summary} numberOfLines={2}>
-              {activity.shortDescription}
+
+          {activity.ageLabel ? (
+            <AppText variant="bodyStrong" style={styles.ageLine} numberOfLines={1}>
+              {activity.ageLabel}
             </AppText>
           ) : null}
-        </View>
 
-        <View style={styles.pillRow}>
-          {activity.ageLabel ? <CardBadge label={activity.ageLabel} /> : null}
-          <CardBadge label={activity.cityName} />
-        </View>
-
-        <View style={styles.centerRow}>
-          <MaterialCommunityIcons
-            name="map-marker-radius-outline"
-            size={14}
-            color={nensGoColors.primaryStrong}
-          />
-          <AppText variant="metaStrong" style={styles.centerLabel} numberOfLines={1}>
+          <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
             {activity.centerName || activity.venueName || "Centro por definir"}
+          </AppText>
+          <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
+            {activity.cityName}
           </AppText>
         </View>
 
         {onPress ? (
-          <View style={styles.ctaRow}>
-            <AppText variant="metaStrong" style={styles.ctaLabel}>
-              Ver detalle
+          <View style={styles.ctaButton}>
+            <AppText variant="button" style={styles.ctaLabel}>
+              Ver mas
             </AppText>
             <MaterialCommunityIcons
               name="arrow-right"
-              size={16}
+              size={18}
               color={nensGoColors.primaryStrong}
             />
           </View>
@@ -135,7 +154,6 @@ const styles = StyleSheet.create({
   card: {
     overflow: "hidden",
     padding: 0,
-    minHeight: 292,
   },
   mediaWrap: {
     position: "relative",
@@ -152,78 +170,91 @@ const styles = StyleSheet.create({
     right: nensGoSpacing.md,
     top: nensGoSpacing.md,
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
     gap: nensGoSpacing.xs,
   },
+  favoriteButton: {
+    width: 42,
+    height: 42,
+    borderRadius: nensGoRadii.pill,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.96)",
+    borderWidth: 1,
+    borderColor: nensGoColors.border,
+  },
+  favoriteButtonPressed: {
+    opacity: 0.92,
+  },
   content: {
-    minHeight: 176,
     paddingHorizontal: nensGoSpacing.lg,
     paddingVertical: nensGoSpacing.md,
-    gap: nensGoSpacing.sm,
+    gap: nensGoSpacing.md,
   },
-  copyBlock: {
-    gap: nensGoSpacing.xs,
-  },
-  title: {
-    fontSize: 15,
-    lineHeight: 20,
-  },
-  summary: {
+  categoryLabel: {
+    color: nensGoColors.purple,
     fontSize: 12,
     lineHeight: 16,
+    letterSpacing: 0.6,
   },
-  pillRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: nensGoSpacing.xs,
+  copyBlock: {
+    gap: 6,
+  },
+  title: {
+    fontSize: 17,
+    lineHeight: 22,
+  },
+  ageLine: {
+    color: nensGoColors.text,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  detailLine: {
+    color: nensGoColors.textMuted,
+    fontSize: 14,
+    lineHeight: 20,
   },
   cardBadge: {
-    maxWidth: "100%",
     borderRadius: nensGoRadii.pill,
-    paddingHorizontal: nensGoSpacing.sm,
-    paddingVertical: 5,
+    paddingHorizontal: nensGoSpacing.md,
+    paddingVertical: 6,
     alignSelf: "flex-start",
-  },
-  cardBadgeSoft: {
-    backgroundColor: nensGoColors.surfaceMuted,
   },
   cardBadgePrimary: {
     backgroundColor: nensGoColors.primary,
   },
+  cardBadgeSoft: {
+    backgroundColor: nensGoColors.surfaceMuted,
+  },
   cardBadgeWarm: {
-    backgroundColor: nensGoColors.yellow,
+    backgroundColor: nensGoColors.mint,
   },
   cardBadgeLabel: {
-    fontSize: 10,
-    lineHeight: 12,
-    letterSpacing: 0.4,
-    color: nensGoColors.text,
+    fontSize: 12,
+    lineHeight: 14,
+    letterSpacing: 0,
+    color: nensGoColors.surface,
+    textTransform: "none",
   },
   cardBadgeLabelPrimary: {
     color: nensGoColors.surface,
   },
-  centerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    minHeight: 22,
-  },
-  centerLabel: {
-    flex: 1,
-    fontSize: 12,
-    lineHeight: 16,
-  },
-  ctaRow: {
-    marginTop: "auto",
-    paddingTop: nensGoSpacing.xs,
+  ctaButton: {
+    marginTop: nensGoSpacing.sm,
+    minHeight: 46,
+    borderRadius: nensGoRadii.md,
+    borderWidth: 1,
+    borderColor: nensGoColors.border,
+    backgroundColor: nensGoColors.surface,
+    paddingHorizontal: nensGoSpacing.xl,
+    paddingVertical: nensGoSpacing.md,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   ctaLabel: {
-    fontSize: 13,
-    lineHeight: 18,
+    fontSize: 14,
     color: nensGoColors.primaryStrong,
   },
 });
