@@ -142,9 +142,10 @@ export function CatalogScreen() {
           <BrandLockup compact />
         </View>
 
-        <AppText variant="eyebrow">Explorar</AppText>
-        <AppText variant="hero">Explora actividades familiares</AppText>
-        <AppText variant="body">
+        <AppText variant="section" style={styles.heroTitle}>
+          Explora actividades familiares
+        </AppText>
+        <AppText variant="meta" style={styles.heroDescription}>
           Busca por nombre o filtra por ciudad, categoria y edad.
         </AppText>
 
@@ -288,14 +289,21 @@ export function CatalogScreen() {
 
 const styles = StyleSheet.create({
   heroCard: {
-    gap: nensGoSpacing.md,
+    padding: nensGoSpacing.lg,
+    gap: nensGoSpacing.sm,
   },
   heroHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: nensGoSpacing.md,
-    marginBottom: nensGoSpacing.sm,
+    gap: nensGoSpacing.sm,
+  },
+  heroTitle: {
+    fontSize: 18,
+    lineHeight: 22,
+  },
+  heroDescription: {
+    lineHeight: 20,
   },
   signalRow: {
     flexDirection: "row",
@@ -303,24 +311,24 @@ const styles = StyleSheet.create({
     gap: nensGoSpacing.sm,
   },
   searchToolbar: {
-    gap: nensGoSpacing.md,
+    gap: nensGoSpacing.sm,
   },
   searchField: {
-    minHeight: 58,
+    minHeight: 52,
     borderRadius: nensGoRadii.lg,
     backgroundColor: nensGoColors.surfaceMuted,
     borderWidth: 1,
     borderColor: nensGoColors.border,
-    paddingHorizontal: nensGoSpacing.lg,
+    paddingHorizontal: nensGoSpacing.md,
     flexDirection: "row",
     alignItems: "center",
     gap: nensGoSpacing.sm,
   },
   searchInput: {
     flex: 1,
-    paddingVertical: nensGoSpacing.md,
+    paddingVertical: nensGoSpacing.sm,
     color: nensGoColors.text,
-    fontSize: 16,
+    fontSize: 15,
   },
   constraintsBlock: {
     flexDirection: "row",
@@ -356,7 +364,7 @@ const styles = StyleSheet.create({
   inlineActionRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: nensGoSpacing.md,
+    gap: nensGoSpacing.sm,
   },
   inlineAction: {
     flexDirection: "row",
