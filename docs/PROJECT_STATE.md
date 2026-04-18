@@ -65,12 +65,14 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-No further approved slices are currently open.
+There is one approved corrective slice currently open:
+
+- `013-card-media-aspect-fix`
 
 Current next action:
 
-- use the current demo baseline with the corrected browse card and tighter `Explorar` header
-- decide after feedback whether the local heart should stay as a demo-only affordance or be removed or redesigned in a future slice
+- fix the remaining stretched-media regression in the browse card
+- keep the corrected card hierarchy and local heart behavior from slice `012` intact while the rendering fix lands
 
 Current runtime note:
 

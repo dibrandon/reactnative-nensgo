@@ -260,6 +260,20 @@ Completed result:
 - the heart toggle now exists as local in-memory state inside the explore stack only
 - `Explorar` now uses a tighter header so the browse grid appears earlier without changing search or filter behavior
 
+## Phase 12
+
+Name: Card media aspect fix
+
+- Goal: remove the remaining stretched-media regression from the current browse card rendering
+- Status: In Progress on 2026-04-18
+- Expected outputs:
+  - `4:3` media constraint owned by the wrapper
+  - image fill behavior that respects the constrained wrapper
+  - grid alignment hardened against stretch
+- Exit criteria:
+  - the first row no longer renders as tall image columns
+  - the corrected card content from slice `012` becomes visible as intended
+
 ## Sequencing Rule
 
 Do not skip phases unless repo reality changes and the roadmap is updated first.
