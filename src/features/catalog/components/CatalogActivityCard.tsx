@@ -157,11 +157,13 @@ const styles = StyleSheet.create({
   },
   mediaWrap: {
     position: "relative",
+    aspectRatio: 4 / 3,
+    overflow: "hidden",
     backgroundColor: nensGoColors.backgroundSoft,
   },
   image: {
     width: "100%",
-    aspectRatio: 4 / 3,
+    height: "100%",
     resizeMode: "cover",
   },
   topRow: {

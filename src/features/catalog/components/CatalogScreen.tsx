@@ -382,9 +382,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
+    alignItems: "flex-start",
     rowGap: nensGoSpacing.md,
   },
   cardGridItem: {
     width: "48.2%",
+    alignSelf: "flex-start",
   },
 });
