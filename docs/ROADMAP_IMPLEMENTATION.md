@@ -239,6 +239,21 @@ Completed result:
 - `Explorar` now renders cards in a two-column mobile grid instead of a single-column stack
 - search, filters, empty-state handling, and detail navigation stayed intact while the catalog presentation became denser
 
+## Phase 11
+
+Name: Public card correction
+
+- Goal: correct the browse card regression and realign `Explorar` with the supplied web reference
+- Status: In Progress on 2026-04-18
+- Expected outputs:
+  - corrected web-like card hierarchy
+  - local in-memory heart toggle in the explore stack
+  - tighter `Explorar` header that surfaces cards earlier
+- Exit criteria:
+  - the first row no longer reads as stretched image blocks
+  - the heart toggles locally without opening detail
+  - `Cuenta` remains unsynced and unchanged
+
 ## Sequencing Rule
 
 Do not skip phases unless repo reality changes and the roadmap is updated first.

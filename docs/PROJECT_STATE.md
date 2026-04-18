@@ -64,12 +64,14 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-No further approved slices are currently open.
+There is one approved corrective slice currently open:
+
+- `012-public-card-correction`
 
 Current next action:
 
-- use the current demo baseline, which now includes the compact browse card and denser `Explorar` grid
-- decide after stakeholder feedback whether the product should continue as a narrow mobile experience or remain a reference POC
+- correct the native browse card against the supplied native/web screenshots
+- keep the heart local to the explore stack and leave `Cuenta` unchanged while the correction lands
 
 Current runtime note:
 
