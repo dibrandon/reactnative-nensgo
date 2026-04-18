@@ -42,7 +42,7 @@ The repository now has the following operating baseline:
 - `src/app` router structure and shared visual baseline
 - mock-backed mobile catalog list under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
-- account auth-feasibility surface under `src/features/account`
+- an account feature module currently transitioning away from the visible auth-feasibility surface
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
 - a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
@@ -68,7 +68,7 @@ No further approved POC slices are currently open.
 
 Current next action:
 
-- use the repo as the demo baseline for `Explorar + buscar + filtrar`
+- finish slice `010-demo-copy-cleanup-and-account-mock` so the visible runtime reads like product instead of internal narration
 - then decide whether the product should continue as a narrow mobile experience or stay as a reference POC
 
 Current runtime note:

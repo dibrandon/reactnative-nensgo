@@ -196,6 +196,21 @@ Completed result:
 - the explore stack now preserves state across catalog, filters, and detail
 - detail back behavior now follows the same back-or-fallback rule as the filters flow
 
+## Phase 9
+
+Name: Product-facing runtime cleanup
+
+- Goal: remove visible meta narration from routed runtime screens and turn `Cuenta` into a static demo-friendly user mock
+- Status: In Progress on 2026-04-18
+- Expected outputs:
+  - account mock screen with visible `USUARIO` and fake favorites
+  - removal of demo/POC/process narration from routed screens
+  - repo docs updated to reflect the product-facing runtime tone
+- Exit criteria:
+  - `Explorar`, `Filtros`, detail, `Cuenta`, and not-found read like runtime product surfaces
+  - the account badge reads `Demo 5`
+  - no dead visible account feasibility path remains mounted in the router
+
 ## Sequencing Rule
 
 Do not skip phases unless repo reality changes and the roadmap is updated first.

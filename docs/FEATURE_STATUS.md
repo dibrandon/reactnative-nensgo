@@ -15,3 +15,4 @@ Last updated: 2026-04-18
 | `006-poc-evaluation` | POC evaluation and recommendation | Completed | Final repo evaluation now states what the native POC proves, what it does not prove, and when continuation still makes sense. |
 | `008-expo-go-sdk-54-compat` | Expo Go SDK 54 compatibility | Completed | Downgraded the runtime from SDK 55 to SDK 54 so the app can be opened on a physical phone with the default Expo Go store build. |
 | `009-native-explore-search-filters` | Native explore search and filters demo | Completed | `Explorar` now supports native search, stable base-derived filters, empty-state recovery, and preserved context across filters and detail while keeping `Cuenta` secondary. |
+| `010-demo-copy-cleanup-and-account-mock` | Product-facing copy cleanup and account mock | In Progress | Cleans visible runtime copy and replaces the current `Cuenta` explainer with a static demo-friendly user mock. |
