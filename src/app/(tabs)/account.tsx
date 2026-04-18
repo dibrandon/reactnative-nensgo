@@ -1,5 +1,5 @@
-import { AccountFeasibilityScreen } from "@/features/account/components/AccountFeasibilityScreen";
+import { AccountMockScreen } from "@/features/account/components/AccountMockScreen";
 
 export default function AccountScreen() {
-  return <AccountFeasibilityScreen />;
+  return <AccountMockScreen />;
 }
