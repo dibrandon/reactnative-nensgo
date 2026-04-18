@@ -99,7 +99,7 @@ export function CatalogActivityDetailScreen() {
           icon="progress-clock"
           eyebrow="Detalle"
           title="Cargando la ficha"
-          description="Estamos preparando la informacion clave de esta actividad para validar el recorrido completo desde el catalogo."
+          description="Estamos preparando la informacion de esta actividad."
         />
       </ScreenContainer>
     );
@@ -139,7 +139,7 @@ export function CatalogActivityDetailScreen() {
           icon="magnify-close"
           eyebrow="Detalle"
           title="No encontramos esta actividad"
-          description="La ficha que intentas abrir no existe en el catalogo actual del POC. Vuelve a explorar para revisar el listado activo."
+          description="Vuelve a explorar para revisar otras opciones."
           actionLabel="Volver al catalogo"
           onAction={handleGoBack}
         />
@@ -225,9 +225,7 @@ export function CatalogActivityDetailScreen() {
         <AppText variant="eyebrow">Accion principal</AppText>
         <AppText variant="title">Contactar</AppText>
         <AppText variant="body">
-          El POC deja la salida externa resuelta de forma simple. Si esta
-          actividad encaja, puedes abrir un contacto directo sin inventar
-          backend ni formularios propios todavia.
+          Si esta actividad te interesa, puedes abrir el contacto directo.
         </AppText>
         <AppButton
           label={contactUrl ? "Abrir WhatsApp" : "Contacto no disponible"}

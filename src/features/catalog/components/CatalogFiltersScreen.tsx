@@ -142,8 +142,7 @@ export function CatalogFiltersScreen() {
         <AppText variant="eyebrow">Filtros</AppText>
         <AppText variant="hero">Afina el catalogo en segundos</AppText>
         <AppText variant="body">
-          Este corte mantiene la demo simple: ciudad, categoria y edad. Los
-          cambios viven en un borrador local hasta que pulses aplicar.
+          Elige ciudad, categoria o edad y aplica los cambios cuando quieras.
         </AppText>
       </SurfaceCard>
 
@@ -152,7 +151,7 @@ export function CatalogFiltersScreen() {
           icon="progress-clock"
           eyebrow="Filtros"
           title="Cargando opciones"
-          description="Estamos preparando las opciones del catalogo base para que los filtros se mantengan estables."
+          description="Estamos preparando las opciones disponibles."
         />
       ) : null}
 

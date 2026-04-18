@@ -12,9 +12,9 @@ export default function NotFoundScreen() {
     <ScreenContainer contentStyle={styles.content}>
       <SurfaceCard style={styles.card}>
         <AppText variant="eyebrow">Ruta no disponible</AppText>
-        <AppText variant="title">Esta pantalla no existe en el POC</AppText>
+        <AppText variant="title">Esta pantalla no esta disponible</AppText>
         <AppText variant="body">
-          Vuelve a Explorar para seguir validando el shell nativo de NensGo.
+          Vuelve a Explorar para seguir buscando actividades.
         </AppText>
         <AppButton
           label="Volver a Explorar"

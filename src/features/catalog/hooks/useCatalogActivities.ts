@@ -28,7 +28,7 @@ export function useCatalogActivities() {
           setError(
             loadError instanceof Error
               ? loadError.message
-              : "No pudimos cargar el catalogo mock.",
+              : "No pudimos cargar el catalogo.",
           );
         }
       } finally {

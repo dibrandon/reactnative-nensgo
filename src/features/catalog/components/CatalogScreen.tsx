@@ -138,15 +138,12 @@ export function CatalogScreen() {
       <SurfaceCard style={styles.heroCard}>
         <View style={styles.heroHeader}>
           <BrandLockup compact />
-          <InfoPill label="Demo slice" tone="primary" />
         </View>
 
         <AppText variant="eyebrow">Explorar</AppText>
         <AppText variant="hero">Explora actividades familiares</AppText>
         <AppText variant="body">
-          Busca por nombre o filtra por ciudad, categoria y edad. Esta demo
-          valida si el loop principal de NensGo se entiende mejor como
-          experiencia nativa cuando puedes acotar el catalogo rapidamente.
+          Busca por nombre o filtra por ciudad, categoria y edad.
         </AppText>
 
         <View style={styles.searchToolbar}>
@@ -179,7 +176,6 @@ export function CatalogScreen() {
         </View>
 
         <View style={styles.signalRow}>
-          <InfoPill label="Mock adaptado del fallback web" />
           {!isLoading ? <InfoPill label={activityCountLabel} /> : null}
           {hasActiveFilters ? (
             <InfoPill label={`${activeFilterCount} filtros activos`} tone="warm" />
@@ -226,26 +222,12 @@ export function CatalogScreen() {
         ) : null}
       </SurfaceCard>
 
-      <SurfaceCard tone="muted" style={styles.statusCard}>
-        <AppText variant="metaStrong">Estado honesto del demo</AppText>
-        <AppText variant="meta">
-          `Cuenta` sigue fuera del flujo principal y el detalle se mantiene
-          secundario. El valor que se ensena ahora es explorar, buscar y
-          filtrar sin perder contexto al volver.
-        </AppText>
-        <View style={styles.statusSignalRow}>
-          <InfoPill label="Detalle secundario" />
-          <InfoPill label="Cuenta no funcional" />
-          {hasAnyExploreConstraint ? <InfoPill label="Contexto preservado" /> : null}
-        </View>
-      </SurfaceCard>
-
       {isLoading ? (
         <CatalogStatePanel
           icon="progress-clock"
           eyebrow="Catalogo"
-          title="Cargando la primera capa de lectura"
-          description="El catalogo de esta prueba de concepto vive en una capa mock curada para validar card, scanning y continuidad visual antes de tocar detalle o backend."
+          title="Cargando actividades"
+          description="Estamos preparando el catalogo."
         />
       ) : null}
 
@@ -264,8 +246,8 @@ export function CatalogScreen() {
         <CatalogStatePanel
           icon="magnify-close"
           eyebrow="Catalogo"
-          title="No hay actividades activas en este corte"
-          description="El POC necesita al menos un conjunto pequeno de actividades para validar cards y detalle. Si esta pantalla queda vacia, la capa mock o el filtro del slice se han quedado sin contenido."
+          title="No hay actividades disponibles"
+          description="Vuelve a intentarlo un poco mas tarde."
         />
       ) : null}
 
@@ -304,7 +286,7 @@ const styles = StyleSheet.create({
   heroHeader: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     gap: nensGoSpacing.md,
     marginBottom: nensGoSpacing.sm,
   },
@@ -380,15 +362,6 @@ const styles = StyleSheet.create({
   },
   inlineActionLabel: {
     color: nensGoColors.primaryStrong,
-  },
-  statusCard: {
-    gap: nensGoSpacing.sm,
-  },
-  statusSignalRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: nensGoSpacing.sm,
-    marginTop: nensGoSpacing.xs,
   },
   cardList: {
     gap: nensGoSpacing.lg,
