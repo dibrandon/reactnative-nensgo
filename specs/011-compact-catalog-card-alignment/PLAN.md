@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-18
 - Last updated: 2026-04-18
 - Branch: `main`
@@ -95,6 +95,17 @@ Deliver a compact mobile catalog presentation that feels closer to the public Ne
   - the detail navigation remains intact
   - search, filters, counts, and empty states still render
 
+Validation run on 2026-04-18:
+
+- ran `npm.cmd run typecheck`
+- ran `cmd /c npx expo export --platform web`
+- confirmed the exported route tree still includes `explore`, `explore/filters`, and `explore/[activityId]`
+- confirmed from the implemented catalog screen and card code that:
+  - `Explorar` now renders cards in a two-column grid
+  - card media moved from a fixed 204px block to a tighter `4:3` ratio
+  - card content is now more compact and bounded for denser scanning
+  - detail navigation remains attached to the card press action
+
 ## Definition Of Done
 
 - the catalog card is visibly more compact than the previous version
@@ -105,7 +116,17 @@ Deliver a compact mobile catalog presentation that feels closer to the public Ne
 
 ## Outcome
 
-Not completed yet.
+Completed on 2026-04-18.
+
+The native catalog now uses a denser browse treatment aligned more closely with
+the public NensGo reference: compact cards, smaller metadata chips, a lighter
+CTA row, and a two-column grid in `Explorar`. The slice stayed presentation-only
+and did not change search, filters, detail behavior, or the mobile data
+contract. Closed in git history with:
+
+- `docs(catalog): open slice 011 compact card alignment`
+- `feat(catalog): align compact browse cards with mobile grid`
+- `docs(catalog): close slice 011 compact card alignment`
 
 ## Follow-Ups
 

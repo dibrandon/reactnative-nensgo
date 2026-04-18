@@ -201,3 +201,20 @@ Impact:
 - the only visible meta badge kept in runtime is the account badge, now labeled `Demo 5`
 - `Cuenta` shows a static user mock with fake favorites instead of an auth explainer
 - auth feasibility remains repo knowledge and future work context, not mounted runtime narration
+
+## 2026-04-18 - ADR-0013 - Use A Compact Two-Column Browse Card For The Demo Catalog
+
+Decision:
+
+The demo catalog should use a compact public-card-inspired layout in a two-column mobile grid instead of the previous tall single-column list.
+
+Why:
+
+The functional explore flow was already working, but the browse surface still felt too editorial and too sparse for a phone demo. The public NensGo reference shows a denser browsing rhythm that better supports quick family scanning.
+
+Impact:
+
+- `Explorar` now prioritizes two-column scan density over the earlier single-column card stack
+- card compaction is handled locally inside the catalog card rather than by globally shrinking shared UI primitives
+- the visual reference guides presentation only; the mobile runtime still does not aim for web parity
+- search, filters, detail navigation, and the lean `CatalogActivity` contract remain unchanged

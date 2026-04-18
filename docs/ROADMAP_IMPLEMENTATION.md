@@ -223,7 +223,7 @@ Completed result:
 Name: Compact catalog card alignment
 
 - Goal: align the mobile browse card more closely with the public NensGo reference and increase visible catalog density on phone screens
-- Status: In Progress on 2026-04-18
+- Status: Completed on 2026-04-18
 - Expected outputs:
   - tighter card media ratio
   - more compact card copy and metadata treatment
@@ -232,6 +232,12 @@ Name: Compact catalog card alignment
   - catalog cards feel visibly closer to the public browse reference
   - the app keeps current search, filter, empty-state, and detail behavior intact
   - the density improvement stays presentation-only and does not expand the data contract or product scope
+
+Completed result:
+
+- `CatalogActivityCard` now uses a tighter `4:3` media block, smaller local badges, shorter copy, and a lighter inline CTA
+- `Explorar` now renders cards in a two-column mobile grid instead of a single-column stack
+- search, filters, empty-state handling, and detail navigation stayed intact while the catalog presentation became denser
 
 ## Sequencing Rule
 

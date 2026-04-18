@@ -64,14 +64,12 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-There is one approved presentation refinement slice currently open:
-
-- `011-compact-catalog-card-alignment`
+No further approved slices are currently open.
 
 Current next action:
 
-- refine the catalog card and `Explorar` grid density against the public NensGo browsing reference
-- keep search, filters, detail, and the account mock unchanged while this presentation slice lands
+- use the current demo baseline, which now includes the compact browse card and denser `Explorar` grid
+- decide after stakeholder feedback whether the product should continue as a narrow mobile experience or remain a reference POC
 
 Current runtime note:
 
