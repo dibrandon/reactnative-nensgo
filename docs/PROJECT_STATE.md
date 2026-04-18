@@ -65,14 +65,12 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-There is one approved corrective slice currently open:
-
-- `013-card-media-aspect-fix`
+No further approved slices are currently open.
 
 Current next action:
 
-- fix the remaining stretched-media regression in the browse card
-- keep the corrected card hierarchy and local heart behavior from slice `012` intact while the rendering fix lands
+- use the current demo baseline with the corrected browse hierarchy and the now-constrained media block
+- collect feedback on the corrected cards before reopening any further browse changes
 
 Current runtime note:
 

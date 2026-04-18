@@ -265,7 +265,7 @@ Completed result:
 Name: Card media aspect fix
 
 - Goal: remove the remaining stretched-media regression from the current browse card rendering
-- Status: In Progress on 2026-04-18
+- Status: Completed on 2026-04-18
 - Expected outputs:
   - `4:3` media constraint owned by the wrapper
   - image fill behavior that respects the constrained wrapper
@@ -273,6 +273,12 @@ Name: Card media aspect fix
 - Exit criteria:
   - the first row no longer renders as tall image columns
   - the corrected card content from slice `012` becomes visible as intended
+
+Completed result:
+
+- the `4:3` browse ratio now lives on the media wrapper instead of the image
+- the image now fills the constrained wrapper and no longer drives the card by its intrinsic ratio
+- the explore grid now explicitly aligns items to the top to avoid implicit stretch behavior
 
 ## Sequencing Rule
 

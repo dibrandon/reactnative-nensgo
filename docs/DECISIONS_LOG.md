@@ -235,3 +235,19 @@ Impact:
 - the explore provider owns heart state and preserves it across detail round-trips while the stack stays mounted
 - `Cuenta` remains a static demo mock and does not sync with the local heart toggle
 - the correction stays inside presentation and local interaction scope, not product-grade favorites
+
+## 2026-04-18 - ADR-0015 - Let The Media Wrapper Own The Browse Card Aspect Ratio
+
+Decision:
+
+The browse card's effective `4:3` ratio should be owned by the media wrapper, and the image should fill that wrapper instead of carrying the ratio itself.
+
+Why:
+
+The current preview still rendered the browse cards as stretched media columns even after the hierarchy correction. The remaining issue was rendering ownership: the intrinsic image ratio was still winning in practice.
+
+Impact:
+
+- the card media block now constrains layout before the image is painted
+- the image remains `cover`, but no longer dictates the vertical size of the card
+- the existing browse hierarchy and local heart behavior remain unchanged

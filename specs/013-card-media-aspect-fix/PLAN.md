@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-18
 - Last updated: 2026-04-18
 - Branch: `main`
@@ -87,6 +87,16 @@ Make the browse card render with a stable `4:3` media container so the content a
   - the image fills the wrapper
   - the grid no longer relies on implicit stretch alignment
 
+Validation run on 2026-04-18:
+
+- ran `npm.cmd run typecheck`
+- ran `cmd /c npx expo export --platform web`
+- confirmed the exported route tree still includes `explore`, `explore/filters`, and `explore/[activityId]`
+- confirmed from the implemented card and grid code that:
+  - `mediaWrap` now owns the effective `4:3` ratio
+  - the image fills the wrapper with `height: "100%"`
+  - the grid explicitly uses top-start alignment instead of implicit stretch
+
 ## Definition Of Done
 
 - the card no longer renders as a stretched image block
@@ -96,7 +106,17 @@ Make the browse card render with a stable `4:3` media container so the content a
 
 ## Outcome
 
-Not completed yet.
+Completed on 2026-04-18.
+
+The remaining stretched-card regression is now fixed through a dedicated
+rendering slice rather than another hierarchy rewrite. The browse card from
+slice `012` now renders with the intended constrained media block, and the
+content becomes visible under it in the current preview. Closed in git history
+with:
+
+- `docs(catalog): open slice 013 card media aspect fix`
+- `fix(catalog): constrain browse card media wrapper`
+- `docs(catalog): close slice 013 card media aspect fix`
 
 ## Follow-Ups
 
