@@ -218,6 +218,21 @@ Completed result:
 - `Explorar`, `Filtros`, detail, and not-found now use shorter product-facing copy
 - the former feasibility-only account artifacts were removed from the mounted runtime path
 
+## Phase 10
+
+Name: Compact catalog card alignment
+
+- Goal: align the mobile browse card more closely with the public NensGo reference and increase visible catalog density on phone screens
+- Status: In Progress on 2026-04-18
+- Expected outputs:
+  - tighter card media ratio
+  - more compact card copy and metadata treatment
+  - denser `Explorar` grid that shows roughly four cards across two rows on a phone
+- Exit criteria:
+  - catalog cards feel visibly closer to the public browse reference
+  - the app keeps current search, filter, empty-state, and detail behavior intact
+  - the density improvement stays presentation-only and does not expand the data contract or product scope
+
 ## Sequencing Rule
 
 Do not skip phases unless repo reality changes and the roadmap is updated first.
