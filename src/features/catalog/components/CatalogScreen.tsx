@@ -263,15 +263,16 @@ export function CatalogScreen() {
       ) : null}
 
       {!isLoading && !error && visibleActivities.length > 0 ? (
-        <View style={styles.cardList}>
+        <View style={styles.cardGrid}>
           {visibleActivities.map((activity) => (
-            <CatalogActivityCard
-              key={activity.id}
-              activity={activity}
-              onPress={() => {
-                router.push(`/explore/${activity.id}`);
-              }}
-            />
+            <View key={activity.id} style={styles.cardGridItem}>
+              <CatalogActivityCard
+                activity={activity}
+                onPress={() => {
+                  router.push(`/explore/${activity.id}`);
+                }}
+              />
+            </View>
           ))}
         </View>
       ) : null}
@@ -363,7 +364,13 @@ const styles = StyleSheet.create({
   inlineActionLabel: {
     color: nensGoColors.primaryStrong,
   },
-  cardList: {
-    gap: nensGoSpacing.lg,
+  cardGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    rowGap: nensGoSpacing.md,
+  },
+  cardGridItem: {
+    width: "48.2%",
   },
 });
