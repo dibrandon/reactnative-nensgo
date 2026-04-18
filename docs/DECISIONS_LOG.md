@@ -218,3 +218,20 @@ Impact:
 - card compaction is handled locally inside the catalog card rather than by globally shrinking shared UI primitives
 - the visual reference guides presentation only; the mobile runtime still does not aim for web parity
 - search, filters, detail navigation, and the lean `CatalogActivity` contract remain unchanged
+
+## 2026-04-18 - ADR-0014 - Correct The Browse Card With Web-Like Hierarchy And Keep Hearts Local To Explore
+
+Decision:
+
+The browse card correction should follow the supplied web hierarchy more closely, and the heart should exist only as local in-memory state inside the explore stack.
+
+Why:
+
+The previous compact-card pass improved density but still left the native browse surface feeling image-dominant and structurally wrong against the screenshots. The user wanted a visible heart affordance, but not a reopened favorites product surface.
+
+Impact:
+
+- the card now uses image, optional `Gratis`, heart, category, title, age, center, city, and a full-width CTA
+- the explore provider owns heart state and preserves it across detail round-trips while the stack stays mounted
+- `Cuenta` remains a static demo mock and does not sync with the local heart toggle
+- the correction stays inside presentation and local interaction scope, not product-grade favorites

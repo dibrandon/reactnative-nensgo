@@ -21,6 +21,7 @@ These are not defects in shipped code yet, but they are important gaps to track 
 - The repo is currently pinned to Expo SDK 54 for Expo Go convenience on phones; upgrading again should wait until Expo Go store support and the project's real runtime needs align.
 - Explore search and filters are intentionally in-memory only; if the demo evolves into a real product, persistence and restoration policy still need to be designed.
 - `Cuenta` is now a static demo mock with fake favorites, so the product meaning of account and saved activities still needs a real decision before any runtime implementation.
+- The catalog heart now toggles in explore-local memory only and is intentionally unsynced with `Cuenta`, so the real meaning of favorites still remains unresolved.
 
 ## Debt Recording Rule
 

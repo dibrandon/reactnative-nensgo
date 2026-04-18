@@ -7,7 +7,7 @@ Last updated: 2026-04-18
 - Current branch: `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: none configured
-- Application code: Expo Router shell, mock-backed catalog with search and filters, detail route, and static account mock surface implemented
+- Application code: Expo Router shell, mock-backed catalog with search and filters, corrected browse cards with local in-memory hearts, detail route, and static account mock surface implemented
 - Build tooling: Expo SDK 54
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
@@ -43,6 +43,7 @@ The repository now has the following operating baseline:
 - mock-backed mobile catalog list under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
 - an account feature module with a mounted static demo user mock
+- local in-memory favorite toggles inside the explore stack only
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
 - a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
@@ -64,14 +65,12 @@ Missing implementation layers include:
 
 ## Immediate Implication
 
-There is one approved corrective slice currently open:
-
-- `012-public-card-correction`
+No further approved slices are currently open.
 
 Current next action:
 
-- correct the native browse card against the supplied native/web screenshots
-- keep the heart local to the explore stack and leave `Cuenta` unchanged while the correction lands
+- use the current demo baseline with the corrected browse card and tighter `Explorar` header
+- decide after feedback whether the local heart should stay as a demo-only affordance or be removed or redesigned in a future slice
 
 Current runtime note:
 

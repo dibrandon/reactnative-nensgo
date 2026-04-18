@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-18
 - Last updated: 2026-04-18
 - Branch: `main`
@@ -99,6 +99,17 @@ Correct the browse card hierarchy and compact the `Explorar` header so the nativ
   - favorite state survives a round-trip into detail while the stack stays mounted
   - the header is visibly shorter
 
+Validation run on 2026-04-18:
+
+- ran `npm.cmd run typecheck` after the card correction and local favorite toggle
+- ran `npm.cmd run typecheck` after the header tightening pass
+- ran `cmd /c npx expo export --platform web` after the header tightening pass
+- confirmed the exported route tree still includes `explore`, `explore/filters`, and `explore/[activityId]`
+- confirmed from the implemented explore provider and card wiring that:
+  - the heart toggle is local to the explore stack
+  - heart presses do not use the catalog model or `Cuenta`
+  - detail navigation still comes from the card press action
+
 ## Definition Of Done
 
 - card hierarchy matches the supplied web reference closely enough for demo use
@@ -109,7 +120,18 @@ Correct the browse card hierarchy and compact the `Explorar` header so the nativ
 
 ## Outcome
 
-Not completed yet.
+Completed on 2026-04-18.
+
+The current browse card regression is now corrected through a new slice rather
+than by rewriting slice `011`. `Explorar` now uses a web-like card hierarchy,
+local in-memory heart toggles, and a tighter header that surfaces cards earlier
+in the viewport. The slice kept search, filters, empty states, detail flow, and
+the `CatalogActivity` contract intact. Closed in git history with:
+
+- `docs(catalog): open slice 012 public card correction`
+- `feat(catalog): correct explore card structure and favorite toggle`
+- `feat(catalog): tighten explore header for browse density`
+- `docs(catalog): close slice 012 public card correction`
 
 ## Follow-Ups
 

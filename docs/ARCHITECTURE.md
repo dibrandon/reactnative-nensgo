@@ -14,7 +14,7 @@ The repository currently contains:
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
 - shell-specific placeholder composition built on the shared visual layer
-- `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, and a compact two-column mobile browse composition
+- `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, a corrected web-like browse card hierarchy, and a local explore-scoped heart toggle
 - a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
 - a dedicated filters route under `src/app/(tabs)/explore/filters.tsx`
 - `src/features/account` with a static demo profile model and account surface for the `Cuenta` tab
@@ -144,7 +144,7 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 - Detail is implemented as a route, not as a modal migration.
 - `Cuenta` currently mounts a static demo user mock while real auth remains outside the runtime.
 - The current repo baseline is pinned to Expo SDK 54 so the project can run in the default Expo Go store build on a physical phone during the current compatibility window.
-- The catalog browse surface now follows a denser public-card-inspired direction with a compact card and two-column mobile grid instead of the earlier tall single-column list.
+- The catalog browse surface now follows a corrected web-like hierarchy in a two-column grid, with the heart toggle stored only in the explore-local state layer.
 
 ## Decisions Explicitly Deferred
 

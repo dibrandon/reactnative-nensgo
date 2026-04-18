@@ -244,7 +244,7 @@ Completed result:
 Name: Public card correction
 
 - Goal: correct the browse card regression and realign `Explorar` with the supplied web reference
-- Status: In Progress on 2026-04-18
+- Status: Completed on 2026-04-18
 - Expected outputs:
   - corrected web-like card hierarchy
   - local in-memory heart toggle in the explore stack
@@ -253,6 +253,12 @@ Name: Public card correction
   - the first row no longer reads as stretched image blocks
   - the heart toggles locally without opening detail
   - `Cuenta` remains unsynced and unchanged
+
+Completed result:
+
+- `CatalogActivityCard` now follows the corrected hierarchy from the supplied web screenshot instead of the previous image-heavy variant
+- the heart toggle now exists as local in-memory state inside the explore stack only
+- `Explorar` now uses a tighter header so the browse grid appears earlier without changing search or filter behavior
 
 ## Sequencing Rule
 
