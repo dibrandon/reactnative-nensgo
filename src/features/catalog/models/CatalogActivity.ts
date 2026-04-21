@@ -13,5 +13,4 @@ export type CatalogActivity = {
   venueName?: string;
   venueAddress?: string;
   isFree?: boolean;
-  contactPhone?: string;
 };

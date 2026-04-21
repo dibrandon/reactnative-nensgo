@@ -1,10 +1,9 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { router, useLocalSearchParams } from "expo-router";
-import { Linking, Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 import { resolveCatalogImageSource } from "@/features/catalog/data/catalogImageSources";
 import {
-  buildCatalogContactUrl,
   getCatalogDetailFacts,
   getCatalogLocationFacts,
 } from "@/features/catalog/helpers/catalogDetailPresentation";
@@ -72,20 +71,6 @@ export function CatalogActivityDetailScreen() {
     goBackToExploreFallback();
   }
 
-  async function handleOpenContact() {
-    if (!activity) {
-      return;
-    }
-
-    const contactUrl = buildCatalogContactUrl(activity);
-
-    if (!contactUrl) {
-      return;
-    }
-
-    await Linking.openURL(contactUrl);
-  }
-
   if (isLoading) {
     return (
       <ScreenContainer>
@@ -150,7 +135,7 @@ export function CatalogActivityDetailScreen() {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
   const detailFacts = getCatalogDetailFacts(activity);
   const locationFacts = getCatalogLocationFacts(activity);
-  const contactUrl = buildCatalogContactUrl(activity);
+  const detailCopy = activity.description || activity.shortDescription;
 
   return (
     <ScreenContainer>
@@ -175,8 +160,8 @@ export function CatalogActivityDetailScreen() {
           </View>
 
           <AppText variant="title">{activity.title}</AppText>
-          {activity.shortDescription ? (
-            <AppText variant="body">{activity.shortDescription}</AppText>
+          {detailCopy ? (
+            <AppText variant="body">{detailCopy}</AppText>
           ) : null}
 
           <View style={styles.heroMetaRow}>
@@ -225,14 +210,20 @@ export function CatalogActivityDetailScreen() {
         <AppText variant="eyebrow">Accion principal</AppText>
         <AppText variant="title">Contactar</AppText>
         <AppText variant="body">
-          Si esta actividad te interesa, puedes abrir el contacto directo.
+          El contacto real de esta actividad todavia no esta disponible en la
+          app movil. Esta baseline ya usa el catalogo real, pero la integracion
+          con opciones de contacto llegara en una slice posterior.
         </AppText>
-        <AppButton
-          label={contactUrl ? "Abrir WhatsApp" : "Contacto no disponible"}
-          icon="whatsapp"
-          onPress={handleOpenContact}
-          disabled={!contactUrl}
-        />
+        <View style={styles.contactStatusBox}>
+          <MaterialCommunityIcons
+            name="information-outline"
+            size={18}
+            color={nensGoColors.primaryStrong}
+          />
+          <AppText variant="metaStrong" style={styles.contactStatusText}>
+            Contacto aun no disponible en la app
+          </AppText>
+        </View>
       </SurfaceCard>
     </ScreenContainer>
   );
@@ -291,5 +282,21 @@ const styles = StyleSheet.create({
   contactCard: {
     gap: nensGoSpacing.sm,
     marginBottom: nensGoSpacing.sm,
+  },
+  contactStatusBox: {
+    minHeight: 52,
+    borderRadius: nensGoRadii.md,
+    borderWidth: 1,
+    borderColor: nensGoColors.border,
+    backgroundColor: nensGoColors.surfaceMuted,
+    paddingHorizontal: nensGoSpacing.lg,
+    paddingVertical: nensGoSpacing.md,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: nensGoSpacing.sm,
+  },
+  contactStatusText: {
+    color: nensGoColors.primaryStrong,
+    flex: 1,
   },
 });
