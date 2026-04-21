@@ -1,0 +1,22 @@
+export type CatalogActivityReadRow = {
+  id: number;
+  title: string;
+  center_id: number;
+  center_name: string | null;
+  city_id: number;
+  city_name: string;
+  category_id: number;
+  category_label: string | null;
+  description: string | null;
+  short_description: string | null;
+  image_url: string | null;
+  age_rule_type: string | null;
+  age_min: number | null;
+  age_max: number | null;
+  price_label: string | null;
+  is_free: boolean;
+  schedule_label: string | null;
+  venue_name: string | null;
+  venue_address_1: string | null;
+  created_at: string;
+};

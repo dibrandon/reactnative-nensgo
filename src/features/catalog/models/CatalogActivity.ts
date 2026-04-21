@@ -2,6 +2,7 @@ export type CatalogActivity = {
   id: string;
   title: string;
   categoryLabel?: string;
+  description?: string;
   shortDescription?: string;
   imageUrl?: string;
   cityName: string;

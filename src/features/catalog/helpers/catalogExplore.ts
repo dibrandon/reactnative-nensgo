@@ -68,6 +68,7 @@ export function matchesSearch(
 
   const searchableFields = [
     activity.title,
+    activity.description,
     activity.shortDescription,
     activity.cityName,
     activity.categoryLabel,
