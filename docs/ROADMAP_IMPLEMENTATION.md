@@ -28,6 +28,8 @@ The current reopened demo slice still keeps the scope narrow. It adds only:
 - simple text search
 - three stable filters: `city`, `category`, and `ageBand`
 - a dedicated filters screen with preserved explore state
+- a real public catalog baseline from the shared Supabase backend without mock
+  fallback
 
 ## Phase 1
 
@@ -279,6 +281,38 @@ Completed result:
 - the `4:3` browse ratio now lives on the media wrapper instead of the image
 - the image now fills the constrained wrapper and no longer drives the card by its intrinsic ratio
 - the explore grid now explicitly aligns items to the top to avoid implicit stretch behavior
+
+## Phase 13
+
+Name: Native real catalog baseline without mocks
+
+- Goal: replace the fake catalog runtime with an honest real-data baseline while
+  keeping auth, favorites, and real contact out of scope
+- Status: Completed on 2026-04-21
+- Expected outputs:
+  - public catalog reads through shared Supabase view `catalog_activities_read`
+  - explicit mobile read-row mapper
+  - no runtime mock catalog fallback
+  - no fake account profile
+  - no fake favorite interaction
+  - detail aligned to real data without `contactPhone`
+- Exit criteria:
+  - `Explorar` loads real activities from Supabase
+  - search and filters still work on loaded real data
+  - detail renders real activity data and stays honest about contact being
+    pending
+  - `Cuenta` no longer pretends that auth exists
+
+Completed result:
+
+- the app now includes a minimal mobile Supabase client for public catalog reads
+- the catalog repository now reads `catalog_activities_read` with no runtime
+  mock fallback
+- search and filters still run over the loaded real activities
+- detail no longer depends on `contactPhone` and now exposes an honest
+  non-operational contact block
+- `Cuenta` now shows runtime status instead of a fake user
+- fake favorite interaction has been removed instead of being left as a demo
 
 ## Sequencing Rule
 

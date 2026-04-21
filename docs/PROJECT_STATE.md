@@ -2,17 +2,17 @@
 
 ## Snapshot
 
-Last updated: 2026-04-18
+Last updated: 2026-04-21
 
-- Current branch: `main`
+- Current branch: `feat/native-real-catalog-no-mocks`
 - Git history: initialized with traceable SDD baseline commits
-- Git remotes: none configured
-- Application code: Expo Router shell, mock-backed catalog with search and filters, corrected browse cards with local in-memory hearts, detail route, and static account mock surface implemented
+- Git remotes: `origin` configured
+- Application code: Expo Router shell, Supabase-backed public catalog with search and filters, full-screen detail route with honest non-operational contact state, and an honest account status surface
 - Build tooling: Expo SDK 54
 - Package manager choice: npm
 - Mobile stack in code: Expo Router + TypeScript
 - CI or quality gates: absent
-- Backend or API contract: absent
+- Backend or API contract: public catalog read through shared Supabase view `catalog_activities_read`
 
 ## What Existed Before This Bootstrap Task
 
@@ -40,13 +40,14 @@ The repository now has the following operating baseline:
 - native POC umbrella spec and first executable shell plan
 - runnable Expo shell with `Explorar` and `Cuenta`
 - `src/app` router structure and shared visual baseline
-- mock-backed mobile catalog list under `src/features/catalog`
+- a mobile Supabase client for public catalog reads under `src/shared/lib/supabase`
+- real catalog reads through `catalog_activities_read` under `src/features/catalog`
 - full-screen detail route under `src/app/(tabs)/explore/[activityId].tsx`
-- an account feature module with a mounted static demo user mock
-- local in-memory favorite toggles inside the explore stack only
+- an account feature module with an honest runtime status surface
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
 - a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
+- a completed real-catalog baseline slice under `specs/014-native-real-catalog-no-mocks/`
 - phased roadmap
 - feature registry
 - tech debt tracker
@@ -58,8 +59,9 @@ The repository now has the following operating baseline:
 
 Missing implementation layers include:
 
-- backend-backed catalog reads
-- real auth runtime beyond the visible account mock
+- real auth runtime beyond the current account status surface
+- real contact options inside the detail flow
+- remote favorites
 - test baseline
 - lint or format baseline
 
@@ -67,10 +69,11 @@ Missing implementation layers include:
 
 No further approved slices are currently open.
 
-Current next action:
+Current next action candidates:
 
-- use the current demo baseline with the corrected browse hierarchy and the now-constrained media block
-- collect feedback on the corrected cards before reopening any further browse changes
+- connect real `activity_contact_options` into the mobile detail flow
+- open a real mobile auth slice
+- add remote favorites only after auth exists
 
 Current runtime note:
 

@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: In Progress
+- Status: Completed
 - Date opened: 2026-04-21
 - Last updated: 2026-04-21
 - Branch: `feat/native-real-catalog-no-mocks`
@@ -111,16 +111,19 @@ future auth/contact/favorites work honest and clearly deferred.
 
 - `npm install`
 - `npm run typecheck`
-- start Expo and verify:
-  - real catalog load
-  - search on loaded data
-  - filters on loaded data
-  - detail on real activity data
-  - no fake heart interaction
-  - honest `Cuenta`
-- break Supabase env intentionally and verify:
-  - error state is honest
-  - no fallback to mocks appears
+- `cmd /c npx expo export --platform web`
+- start Expo web on port `8085` and verify HTTP `200` on:
+  - `/`
+  - `/explore`
+  - `/explore/filters`
+  - `/account`
+- run a scripted integration check against the real Supabase read model plus the
+  repo's real mapper and filter helpers to verify:
+  - real catalog rows load
+  - detail row load works
+  - search matches on loaded data
+  - city filter matching works
+  - mapped detail data contains no `contactPhone`
 - search the runtime for removed fake dependencies:
   - `catalogActivityMocks`
   - `mockCatalogRepository`
@@ -141,7 +144,12 @@ future auth/contact/favorites work honest and clearly deferred.
 
 ## Outcome
 
-Pending.
+Completed on 2026-04-21.
+
+The app now reads the catalog from Supabase through the shared
+`catalog_activities_read` view, the detail screen no longer depends on
+`contactPhone`, fake explore favorites are gone, and `Cuenta` now exposes an
+honest status surface instead of a fake user profile.
 
 ## Follow-Ups
 

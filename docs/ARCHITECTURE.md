@@ -2,22 +2,23 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-18, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a mock-backed catalog feature module, explore-scoped search and filters, a full-screen detail route, a static account mock surface, and the repo SDD documents.
+As of 2026-04-21, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a Supabase-backed public catalog read path, explore-scoped search and filters, a full-screen detail route, an honest account status surface, and the repo SDD documents.
 
 The repository currently contains:
 
 - SDD operating documents
 - Expo SDK 54 runtime dependencies
 - `src/app` driven by Expo Router
-- a catalog-backed `Explorar` tab plus a static mock `Cuenta` tab
+- a catalog-backed `Explorar` tab plus an honest status-based `Cuenta` tab
 - stack-scoped explore state for search, filters, counts, and result derivation
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
 - shell-specific placeholder composition built on the shared visual layer
-- `src/features/catalog` with a lean runtime model, curated mocks, image mapping, repository seam, hook, a corrected web-like browse card hierarchy, a constrained `4:3` media wrapper, and a local explore-scoped heart toggle
+- `src/shared/lib/supabase` with a minimal public-read Supabase client
+- `src/features/catalog` with a lean runtime model, a real read-row contract, an explicit `catalog_activities_read -> CatalogActivity` mapper, a Supabase-backed repository seam, explore hooks, a corrected web-like browse card hierarchy without fake heart interaction, and a constrained `4:3` media wrapper
 - a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
 - a dedicated filters route under `src/app/(tabs)/explore/filters.tsx`
-- `src/features/account` with a static demo profile model and account surface for the `Cuenta` tab
+- `src/features/account` with an honest account status surface for the `Cuenta` tab
 
 ## Provisional Target Architecture For The POC
 
@@ -50,7 +51,7 @@ The intended native interpretation is:
 - a short, app-like `Explorar` entry point instead of a long editorial landing
 - a full-screen filters route with draft application semantics instead of dense in-list web controls
 - a full-screen detail route instead of a modal detail overlay
-- an early visible `Cuenta` surface as a static user mock, not real auth
+- an early visible `Cuenta` surface that stays honest about auth being unimplemented
 
 The following current web areas are intentionally outside the native POC baseline:
 
@@ -85,11 +86,10 @@ src/
       models/
     account/
       components/
-      data/
-      models/
     shell/
       components/
   shared/
+    lib/
     theme/
     ui/
 ```
@@ -98,11 +98,10 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 
 - app shell and navigation
 - shared UI or theme primitives
-- feature modules for catalog and account, including explore-scoped state and the static account mock
-- mock data or adapters only when a slice actually needs them
+- feature modules for catalog and account, including explore-scoped state and the honest account status surface
 - configuration and environment boundaries
 
-The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell, catalog, detail, filters, and the account mock screen. The next slices should extend those areas only when a future iteration truly needs more surface area.
+The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell, catalog, detail, filters, and the account status screen. The next slices should extend those areas only when a future iteration truly needs more surface area.
 
 ### Data Boundary Direction
 
@@ -114,6 +113,7 @@ For future catalog slices, use a presentation-oriented mobile contract as the de
 type CatalogActivity = {
   id: string;
   title: string;
+  description?: string;
   categoryLabel?: string;
   shortDescription?: string;
   imageUrl?: string;
@@ -125,12 +125,16 @@ type CatalogActivity = {
   venueName?: string;
   venueAddress?: string;
   isFree?: boolean;
-  contactPhone?: string;
 };
 ```
 
 This contract now exists in code under `src/features/catalog/models/CatalogActivity.ts`.
 Do not expand it into a mirror of the current web model unless a later slice proves the extra fields are necessary.
+
+The real read-side boundary now sits one step earlier in code through
+`CatalogActivityReadRow`, which mirrors the shared Supabase view
+`catalog_activities_read` before the mapper reduces it into the mobile
+presentation contract.
 
 ## Decisions Already Made
 
@@ -140,24 +144,25 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 - Expo Router will be used for the shell slice.
 - The first native shell will expose `Explorar` and `Cuenta` tabs.
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
-- Catalog reads will use curated mobile mocks before any backend or full web-model parity work is considered.
+- Catalog reads now use the shared Supabase view `catalog_activities_read` with no mock fallback.
 - Detail is implemented as a route, not as a modal migration.
-- `Cuenta` currently mounts a static demo user mock while real auth remains outside the runtime.
+- `Cuenta` now mounts an honest status surface while real auth remains outside the runtime.
 - The current repo baseline is pinned to Expo SDK 54 so the project can run in the default Expo Go store build on a physical phone during the current compatibility window.
-- The catalog browse surface now follows a corrected web-like hierarchy in a two-column grid, with the heart toggle stored only in the explore-local state layer and the media ratio owned by the wrapper instead of the image.
+- The catalog browse surface now follows a corrected web-like hierarchy in a two-column grid without fake favorite interaction.
+- Mobile detail no longer depends on `contactPhone`; real contact remains a future `activity_contact_options` slice.
 
 ## Decisions Explicitly Deferred
 
 These decisions should not be invented before the app scaffold task:
 
 - state management approach beyond local needs
-- backend data access strategy
 - auth provider integration details
 - analytics and observability stack
+- final mobile contact UX once `activity_contact_options` is wired
 
 ## Architecture Guardrails
 
 - Do not port a web architecture blindly into mobile.
 - Keep the POC thin and reversible.
-- Prefer seams and mocks over premature backend coupling.
+- Prefer explicit seams over hidden runtime fallbacks.
 - Record real decisions in `docs/DECISIONS_LOG.md`.

@@ -1,6 +1,6 @@
 # Feature Status
 
-Last updated: 2026-04-18
+Last updated: 2026-04-21
 
 | ID | Feature | Status | Notes |
 | --- | --- | --- | --- |
@@ -19,3 +19,4 @@ Last updated: 2026-04-18
 | `011-compact-catalog-card-alignment` | Compact catalog card alignment | Completed | `Explorar` now uses a denser two-column grid and a compact browse card aligned more closely with the public NensGo reference while preserving current catalog behavior. |
 | `012-public-card-correction` | Public card correction for native explore | Completed | `Explorar` now uses the corrected web-like card hierarchy, a local in-memory heart toggle, and a tighter header while leaving `Cuenta` unsynced and unchanged. |
 | `013-card-media-aspect-fix` | Card media aspect fix | Completed | The remaining stretched-card regression is now fixed by constraining the media container and hardening grid alignment, so the corrected card content from slice `012` renders as intended. |
+| `014-native-real-catalog-no-mocks` | Native real catalog baseline without mocks | Completed | `Explorar` now reads the real shared Supabase catalog, detail no longer depends on `contactPhone`, fake hearts are gone, and `Cuenta` now exposes an honest status surface instead of a fake user. |
