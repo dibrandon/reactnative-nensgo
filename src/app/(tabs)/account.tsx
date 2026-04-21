@@ -1,5 +1,5 @@
-import { AccountMockScreen } from "@/features/account/components/AccountMockScreen";
+import { AccountStatusScreen } from "@/features/account/components/AccountStatusScreen";
 
 export default function AccountScreen() {
-  return <AccountMockScreen />;
+  return <AccountStatusScreen />;
 }
