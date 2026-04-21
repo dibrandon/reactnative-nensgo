@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { AuthSessionProvider } from "@/features/account/hooks/useAuthSession";
 import { nensGoNavigationTheme } from "@/shared/theme/navigationTheme";
 
 export { ErrorBoundary } from "expo-router";
@@ -49,14 +50,16 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider value={nensGoNavigationTheme}>
-        <StatusBar style="dark" />
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </ThemeProvider>
+      <AuthSessionProvider>
+        <ThemeProvider value={nensGoNavigationTheme}>
+          <StatusBar style="dark" />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </ThemeProvider>
+      </AuthSessionProvider>
     </SafeAreaProvider>
   );
 }
