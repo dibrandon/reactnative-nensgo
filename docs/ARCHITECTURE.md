@@ -2,7 +2,12 @@
 
 ## Current Implemented Architecture
 
-As of 2026-04-21, the implemented architecture contains a runnable Expo shell, a thin shared visual system, a Supabase-backed public catalog read path, explore-scoped search and filters, a full-screen detail route, an honest account status surface, and the repo SDD documents.
+As of 2026-04-22, the implemented architecture contains a runnable Expo shell,
+a thin shared visual system, a Supabase-backed public catalog read path with
+hardened real media resolution, explore-scoped search and filters, a full-screen
+detail route wired to real contact-option states, a live account/auth session
+surface, a remote favorites provider gated on ready account state, and the repo
+SDD documents.
 
 The repository currently contains:
 
@@ -16,9 +21,18 @@ The repository currently contains:
 - shell-specific placeholder composition built on the shared visual layer
 - `src/shared/lib/supabase` with a minimal public-read Supabase client
 - `src/features/catalog` with a lean runtime model, a real read-row contract, an explicit `catalog_activities_read -> CatalogActivity` mapper, a Supabase-backed repository seam, explore hooks, a corrected web-like browse card hierarchy without fake heart interaction, and a constrained `4:3` media wrapper
+- `src/shared/lib/supabase` now also owns the project-origin helper and the
+  persisted auth-session client configuration
+- `src/features/catalog` now also includes real image-path normalization against
+  the shared Supabase `activities` storage bucket
 - a dedicated detail route under `src/app/(tabs)/explore/[activityId].tsx`
+- the detail feature now includes an `activity_contact_options` repository,
+  hook, URL action helper, and zero/one/many contact state handling
 - a dedicated filters route under `src/app/(tabs)/explore/filters.tsx`
-- `src/features/account` with an honest account status surface for the `Cuenta` tab
+- `src/features/account` with a live auth/session provider, app-user read seam,
+  and account status surface for the `Cuenta` tab
+- `src/features/favorites` with a remote favorites provider consumed by explore
+  and detail
 
 ## Provisional Target Architecture For The POC
 
@@ -86,6 +100,11 @@ src/
       models/
     account/
       components/
+      data/
+      hooks/
+      models/
+    favorites/
+      hooks/
     shell/
       components/
   shared/
@@ -134,7 +153,9 @@ Do not expand it into a mirror of the current web model unless a later slice pro
 The real read-side boundary now sits one step earlier in code through
 `CatalogActivityReadRow`, which mirrors the shared Supabase view
 `catalog_activities_read` before the mapper reduces it into the mobile
-presentation contract.
+presentation contract. The mapper now also resolves the currently observed
+relative `image_url` contract into an absolute path against the shared Supabase
+`activities` storage bucket.
 
 ## Decisions Already Made
 
@@ -149,7 +170,13 @@ presentation contract.
 - `Cuenta` now mounts an honest status surface while real auth remains outside the runtime.
 - The current repo baseline is pinned to Expo SDK 54 so the project can run in the default Expo Go store build on a physical phone during the current compatibility window.
 - The catalog browse surface now follows a corrected web-like hierarchy in a two-column grid without fake favorite interaction.
-- Mobile detail no longer depends on `contactPhone`; real contact remains a future `activity_contact_options` slice.
+- Relative catalog image paths are resolved against the shared Supabase public
+  `activities` bucket when the backend emits the currently observed path format.
+- Mobile detail contact now reads `activity_contact_options` only and follows
+  the zero/one/many rule already closed in the sibling repo.
+- Email/password is the chosen narrow path for the first real mobile auth
+  baseline.
+- Remote favorites are mounted only on top of a ready authenticated app user.
 
 ## Decisions Explicitly Deferred
 
@@ -159,6 +186,10 @@ These decisions should not be invented before the app scaffold task:
 - auth provider integration details
 - analytics and observability stack
 - final mobile contact UX once `activity_contact_options` is wired
+- Google OAuth in mobile
+- onboarding/profile completion after auth exists
+- whether the blocked auth/favorites slices can be validated against the current
+  shared backend without extra backend readiness work
 
 ## Architecture Guardrails
 

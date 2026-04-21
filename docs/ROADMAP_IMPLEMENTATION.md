@@ -314,6 +314,100 @@ Completed result:
 - `Cuenta` now shows runtime status instead of a fake user
 - fake favorite interaction has been removed instead of being left as a demo
 
+## Phase 14
+
+Name: Native catalog image URL hardening
+
+- Goal: resolve the current real catalog media debt without changing unrelated
+  runtime scope
+- Status: Completed on 2026-04-22
+- Expected outputs:
+  - observed-image contract inspection
+  - mapper hardening for the current relative `image_url` format
+  - real media in cards and detail whenever the backend path is already
+    resolvable
+- Exit criteria:
+  - the current relative image contract resolves into mobile-ready absolute URLs
+  - the fallback mark remains only for absent or still-unresolvable media
+
+Completed result:
+
+- the current shared backend image format was confirmed as relative paths such
+  as `es/barcelona/sitges/act_5.jpg`
+- those assets were confirmed to resolve through the shared Supabase
+  `activities` storage bucket
+- the mobile mapper now converts that observed relative path into absolute URLs
+  so the current real catalog rows render their real images
+
+## Phase 15
+
+Name: Native detail real contact options
+
+- Goal: connect `activity_contact_options` into the mobile detail flow
+- Status: Blocked on 2026-04-22
+- Expected outputs:
+  - real contact-option seam for detail
+  - zero/one/many state handling
+  - no fallback to center contact or hardcoded WhatsApp
+- Exit criteria:
+  - zero-contact, one-contact, and many-contact states are all validated with
+    real backend data
+
+Current result:
+
+- the mobile detail runtime now reads `activity_contact_options`
+- the zero-option disabled state, one-option direct path, and many-option
+  chooser path are implemented
+- closure is blocked because the checked shared backend still returns `0` active
+  contact rows for the current visible catalog, so `1` and `>1` remain
+  unvalidated in real data
+
+## Phase 16
+
+Name: Native auth runtime baseline
+
+- Goal: add a narrow real session baseline for mobile without expanding to the
+  full web auth migration
+- Status: Blocked on 2026-04-22
+- Expected outputs:
+  - persisted session storage
+  - bootstrap and state-change listening
+  - live account surface
+  - sign-out
+- Exit criteria:
+  - the baseline is proven with a real ready account or equivalent real backend
+    evidence
+
+Current result:
+
+- the repo now includes a real mobile auth/session provider and live account
+  states around an email/password baseline
+- session persistence and sign-out are implemented in code
+- closure is blocked because validation sign-up against the shared backend
+  returned `Database error saving new user`, and no ready account was available
+  in-repo to prove the authenticated `ready` state end to end
+
+## Phase 17
+
+Name: Native remote favorites
+
+- Goal: restore the heart affordance only as real remote persistence
+- Status: Blocked on 2026-04-22
+- Expected outputs:
+  - remote favorites provider
+  - hearts in explore and detail
+  - honest gating for anonymous or not-ready users
+- Exit criteria:
+  - add/remove/reload are proven against the real backend for a ready account
+
+Current result:
+
+- explore and detail now mount hearts against `user_favorite_activities`
+- anonymous or not-ready users are redirected honestly to `Cuenta` instead of
+  seeing fake persistence
+- closure is blocked behind the same auth-readiness gap that currently blocks
+  `017`
+
 ## Sequencing Rule
 
 Do not skip phases unless repo reality changes and the roadmap is updated first.
