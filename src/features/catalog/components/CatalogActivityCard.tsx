@@ -13,7 +13,10 @@ import { SurfaceCard } from "@/shared/ui/SurfaceCard";
 
 type CatalogActivityCardProps = {
   activity: CatalogActivity;
+  isFavorite?: boolean;
+  isFavoritePending?: boolean;
   onPress?: () => void;
+  onToggleFavorite?: () => void;
 };
 
 function CardBadge({
@@ -50,7 +53,10 @@ function CardBadge({
 
 export function CatalogActivityCard({
   activity,
+  isFavorite = false,
+  isFavoritePending = false,
   onPress,
+  onToggleFavorite,
 }: CatalogActivityCardProps) {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
   const cardBody = (
@@ -61,6 +67,37 @@ export function CatalogActivityCard({
           <View style={styles.topRow}>
             <CardBadge label="Gratis" tone="warm" />
           </View>
+        ) : null}
+        {onToggleFavorite ? (
+          <Pressable
+            accessibilityRole="button"
+            onPress={(event) => {
+              event.stopPropagation();
+              onToggleFavorite();
+            }}
+            style={({ pressed }) => [
+              styles.favoriteButton,
+              pressed && styles.favoriteButtonPressed,
+            ]}
+          >
+            <MaterialCommunityIcons
+              name={
+                isFavoritePending
+                  ? "progress-clock"
+                  : isFavorite
+                    ? "heart"
+                    : "heart-outline"
+              }
+              size={20}
+              color={
+                isFavorite
+                  ? nensGoColors.coral
+                  : isFavoritePending
+                    ? nensGoColors.primaryStrong
+                    : nensGoColors.primaryStrong
+              }
+            />
+          </Pressable>
         ) : null}
       </View>
 
@@ -151,6 +188,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: nensGoSpacing.xs,
+  },
+  favoriteButton: {
+    position: "absolute",
+    right: nensGoSpacing.md,
+    top: nensGoSpacing.md,
+    width: 38,
+    height: 38,
+    borderRadius: nensGoRadii.pill,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.94)",
+    borderWidth: 1,
+    borderColor: nensGoColors.border,
+  },
+  favoriteButtonPressed: {
+    opacity: 0.86,
   },
   content: {
     paddingHorizontal: nensGoSpacing.lg,

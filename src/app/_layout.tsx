@@ -14,6 +14,7 @@ import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { AuthSessionProvider } from "@/features/account/hooks/useAuthSession";
+import { RemoteFavoritesProvider } from "@/features/favorites/hooks/useRemoteFavorites";
 import { nensGoNavigationTheme } from "@/shared/theme/navigationTheme";
 
 export { ErrorBoundary } from "expo-router";
@@ -51,14 +52,16 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <AuthSessionProvider>
-        <ThemeProvider value={nensGoNavigationTheme}>
-          <StatusBar style="dark" />
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </ThemeProvider>
+        <RemoteFavoritesProvider>
+          <ThemeProvider value={nensGoNavigationTheme}>
+            <StatusBar style="dark" />
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="index" />
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </ThemeProvider>
+        </RemoteFavoritesProvider>
       </AuthSessionProvider>
     </SafeAreaProvider>
   );

@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 
+import { useRemoteFavorites } from "@/features/favorites/hooks/useRemoteFavorites";
 import {
   getActivityContactOptionIcon,
   getActivityContactOptionLabel,
@@ -127,6 +128,7 @@ export function CatalogActivityDetailScreen() {
     isLoading: isContactLoading,
     reload: reloadContactOptions,
   } = useActivityContactOptions(activity?.id ?? "", Boolean(activity));
+  const { isFavorite, isPending, toggleFavorite } = useRemoteFavorites();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   function handleGoBack() {
@@ -155,6 +157,26 @@ export function CatalogActivityDetailScreen() {
     }
 
     setIsContactModalOpen(false);
+  }
+
+  async function handleToggleFavorite() {
+    if (!activity) {
+      return;
+    }
+
+    const result = await toggleFavorite(activity.id);
+
+    if (result.reason === "auth_required" || result.reason === "profile_required") {
+      router.push("/account");
+      return;
+    }
+
+    if (result.error) {
+      Alert.alert(
+        "No pudimos cambiar este favorito",
+        result.error.message,
+      );
+    }
   }
 
   if (isLoading) {
@@ -250,6 +272,33 @@ export function CatalogActivityDetailScreen() {
               ) : null}
               {activity.isFree ? <InfoPill label="Gratis" tone="warm" /> : null}
             </View>
+
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => {
+                void handleToggleFavorite();
+              }}
+              style={({ pressed }) => [
+                styles.favoriteButton,
+                pressed && styles.favoriteButtonPressed,
+              ]}
+            >
+              <MaterialCommunityIcons
+                name={
+                  isPending(activity.id)
+                    ? "progress-clock"
+                    : isFavorite(activity.id)
+                      ? "heart"
+                      : "heart-outline"
+                }
+                size={20}
+                color={
+                  isFavorite(activity.id)
+                    ? nensGoColors.coral
+                    : nensGoColors.primaryStrong
+                }
+              />
+            </Pressable>
           </View>
 
           <AppText variant="title">{activity.title}</AppText>
@@ -516,6 +565,19 @@ const styles = StyleSheet.create({
   contactStatusText: {
     color: nensGoColors.primaryStrong,
     flex: 1,
+  },
+  favoriteButton: {
+    width: 42,
+    height: 42,
+    borderRadius: nensGoRadii.pill,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: nensGoColors.surfaceMuted,
+    borderWidth: 1,
+    borderColor: nensGoColors.border,
+  },
+  favoriteButtonPressed: {
+    opacity: 0.88,
   },
   modalBackdrop: {
     flex: 1,

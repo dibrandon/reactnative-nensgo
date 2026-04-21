@@ -350,7 +350,7 @@ export function AccountStatusScreen() {
           <StatusRow
             icon="heart-outline"
             label="Favoritos"
-            value="Siguen fuera del cierre de esta slice. La persistencia remota llega despues de estabilizar auth."
+            value="La logica remota ya existe, pero solo se activa con cuenta lista y perfil app valido. Para estados no listos, el heart redirige honestamente a Cuenta."
           />
           <StatusRow
             icon="message-text-outline"
