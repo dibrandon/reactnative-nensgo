@@ -1,5 +1,6 @@
 import type { CatalogActivityReadRow } from "@/features/catalog/models/CatalogActivityReadRow";
 import type { CatalogActivity } from "@/features/catalog/models/CatalogActivity";
+import { buildSupabasePublicStorageUrl } from "@/shared/lib/supabase/supabaseClient";
 
 function getTrimmedText(value?: string | null) {
   return typeof value === "string" ? value.trim() : "";
@@ -16,7 +17,12 @@ function normalizeCatalogImageUrl(value?: string | null) {
     return imageUrl;
   }
 
-  return undefined;
+  const resolvedStorageUrl = buildSupabasePublicStorageUrl(
+    "activities",
+    imageUrl.replace(/^\/+/, ""),
+  );
+
+  return resolvedStorageUrl || undefined;
 }
 
 function buildAgeLabel(
