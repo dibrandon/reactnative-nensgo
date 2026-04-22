@@ -1,6 +1,5 @@
 import "react-native-url-polyfill/auto";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { Platform } from "react-native";
 
@@ -25,14 +24,56 @@ const supabaseConfigError = missingEnvVars.length
 let supabaseRuntimeError = "";
 let supabaseClient: SupabaseClient | null = null;
 
+type SupabaseAuthStorage = {
+  getItem: (key: string) => Promise<string | null>;
+  setItem: (key: string, value: string) => Promise<void>;
+  removeItem: (key: string) => Promise<void>;
+};
+
+function resolveNativeAuthStorage() {
+  if (Platform.OS === "web") {
+    return undefined;
+  }
+
+  try {
+    const resolvedModule = require("@react-native-async-storage/async-storage");
+    const resolvedStorage = (resolvedModule?.default ??
+      resolvedModule) as SupabaseAuthStorage | undefined;
+
+    if (
+      !resolvedStorage ||
+      typeof resolvedStorage.getItem !== "function" ||
+      typeof resolvedStorage.setItem !== "function" ||
+      typeof resolvedStorage.removeItem !== "function"
+    ) {
+      throw new Error("AsyncStorage no expone la interfaz esperada.");
+    }
+
+    return resolvedStorage;
+  } catch (error) {
+    if (__DEV__) {
+      console.warn(
+        "[supabase] AsyncStorage nativo no esta disponible. La persistencia de sesion queda desactivada en este runtime.",
+        error,
+      );
+    }
+
+    return undefined;
+  }
+}
+
 if (!supabaseConfigError) {
   try {
+    const nativeAuthStorage = resolveNativeAuthStorage();
+    const canPersistNativeSession =
+      Platform.OS === "web" || Boolean(nativeAuthStorage);
+
     supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
       auth: {
-        persistSession: true,
-        autoRefreshToken: true,
+        persistSession: canPersistNativeSession,
+        autoRefreshToken: canPersistNativeSession,
         detectSessionInUrl: Platform.OS === "web",
-        storage: Platform.OS === "web" ? undefined : AsyncStorage,
+        storage: nativeAuthStorage,
       },
     });
   } catch (error) {

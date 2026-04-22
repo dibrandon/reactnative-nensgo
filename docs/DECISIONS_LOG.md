@@ -381,3 +381,28 @@ Impact:
 - anonymous or not-ready users are redirected honestly to `Cuenta`
 - favorite closure remains blocked until the auth baseline can be validated with
   a ready account
+
+## 2026-04-22 - ADR-0022 - Keep Public Catalog Bootstrap Independent From Native Auth Storage Startup
+
+Decision:
+
+Expo Go compatibility repairs should align AsyncStorage to the SDK-supported
+version and ensure the global Supabase client does not let missing native auth
+storage crash the public catalog runtime.
+
+Why:
+
+The repo now contains a real auth/session baseline, but the immediate runtime
+failure observed on Expo Go was not a catalog query problem. It was a storage
+compatibility problem during global Supabase auth initialization. Letting that
+failure take down `Explorar` would couple public catalog truth to optional auth
+persistence in the wrong direction.
+
+Impact:
+
+- the repo now pins `@react-native-async-storage/async-storage` to the Expo SDK
+  54-compatible `2.2.0`
+- the Supabase client resolves native auth storage lazily instead of importing
+  it eagerly at module load
+- if native storage is unavailable, auth persistence degrades honestly instead
+  of crashing the public catalog bootstrap

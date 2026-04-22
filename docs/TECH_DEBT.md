@@ -16,6 +16,10 @@ These are not defects in shipped code yet, but they are important gaps to track 
 - Mobile auth runtime now exists, but the checked shared auth environment still
   blocks closure because validation sign-up returned `Database error saving new
   user` and no ready account was available to prove the full baseline.
+- Mobile auth persistence now degrades safely if native AsyncStorage is
+  unavailable, which protects the public catalog runtime but still means auth
+  restore should be considered environment-dependent until validated on the
+  exact Expo Go/device target in manual smoke.
 - Remote favorites are now wired against the real backend, but closure is still
   blocked behind auth readiness and the absence of a validated ready account.
 - Detail contact now reads `activity_contact_options`, but the checked shared

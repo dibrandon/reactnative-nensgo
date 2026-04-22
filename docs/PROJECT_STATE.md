@@ -53,6 +53,8 @@ The repository now has the following operating baseline:
 - live contact-option reads for detail under `src/features/catalog`
 - an account feature module with a live auth/session baseline surface
 - a remote favorites provider under `src/features/favorites`
+- a completed Expo Go Supabase storage compatibility repair under
+  `specs/019-expo-go-supabase-auth-storage-compat/`
 - final POC evaluation artifact under `docs/POC_EVALUATION.md`
 - Expo Go compatibility slice that pins the current runtime to SDK 54
 - a completed demo slice for native catalog search and filters under `specs/009-native-explore-search-filters/`
@@ -105,6 +107,9 @@ Current next action candidates:
 Current runtime note:
 
 - the repository was originally scaffolded on Expo SDK 55 and then downgraded to SDK 54 on 2026-04-18 so the app can be previewed on a physical phone through the default Expo Go store build during the current rollout window
+- `@react-native-async-storage/async-storage` is now aligned to the Expo SDK 54
+  runtime contract at `2.2.0`, and the Supabase client no longer lets missing
+  native auth storage crash the public catalog bootstrap
 - the current shared auth environment rejected an anonymous validation sign-up
   with `Database error saving new user`, so auth/favorites closure cannot be
   claimed yet from this repo alone
