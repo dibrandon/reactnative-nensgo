@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: Planned
+- Status: Partial
 - Date opened: 2026-04-23
 - Last updated: 2026-04-23
 - Branch: `feat/native-web-frontend-parity`
@@ -100,7 +100,17 @@ intent model introduced by `022`.
 
 ## Outcome
 
-Not shipped yet.
+Implemented in code on 2026-04-23.
+
+- the app shell now exposes `Favoritos` as a first-class tab
+- favorites list and favorites detail now exist as native routes
+- favorite ordering follows the remote created-at order exposed by
+  `user_favorite_activities`
+- removing a favorite from its detail route now returns to the list
+- the open-favorites and toggle-favorite flows now resume through the protected
+  intent model
+- live round-trip validation still depends on a ready account in the shared
+  backend environment
 
 ## Follow-Ups
 

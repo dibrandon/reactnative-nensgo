@@ -64,14 +64,15 @@ Non-negotiable visual guardrail:
 
 ## Provisional Target Architecture For The Parity Pass
 
-This is a target direction, not implemented reality.
+This is now the implemented direction for the parity pass, with live validation
+still pending for some backend/config-dependent paths.
 
 ### Platform Direction
 
 - Expo-managed React Native project
 - TypeScript-first setup
 - Expo Router for app shell navigation
-- mock-friendly boundaries so the POC does not depend on backend completion
+- real-data boundaries where the shared backend is already the product truth
 
 ### Architectural Layers
 
@@ -124,8 +125,7 @@ src/
         _layout.tsx
         index.tsx
         [activityId].tsx
-      account/
-        index.tsx
+      account.tsx
   features/
     catalog/
       components/
@@ -211,7 +211,13 @@ relative `image_url` contract into an absolute path against the shared Supabase
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
 - Catalog reads now use the shared Supabase view `catalog_activities_read` with no mock fallback.
 - Detail is implemented as a route, not as a modal migration.
-- `Cuenta` now mounts an honest status surface while real auth remains outside the runtime.
+- `Cuenta` now mounts the product-facing auth/account/profile surface and owns
+  Google/email entry, verification pending, onboarding-required, ready, and
+  error states.
+- `Favoritos` now exists as a first-class tab with its own list and detail
+  routes.
+- protected intents are persisted in the account layer and resumed once access
+  becomes ready.
 - The current repo baseline is pinned to Expo SDK 54 so the project can run in the default Expo Go store build on a physical phone during the current compatibility window.
 - The catalog browse surface now follows a corrected web-like hierarchy in a two-column grid without fake favorite interaction.
 - Relative catalog image paths are resolved against the shared Supabase public

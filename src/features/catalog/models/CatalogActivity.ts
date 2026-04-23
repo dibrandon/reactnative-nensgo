@@ -5,6 +5,7 @@ export type CatalogActivity = {
   description?: string;
   shortDescription?: string;
   imageUrl?: string;
+  cityId: string | null;
   cityName: string;
   centerName?: string;
   ageLabel?: string;

@@ -53,37 +53,46 @@ Completed result:
 Name: Public catalog and detail parity against web main
 
 - Goal: align public catalog cards, detail rules, and public-surface hardening
-- Status: Planned on 2026-04-23
-- Expected outputs:
+- Status: Partial on 2026-04-23
+- Outputs in code:
   - card/media rule parity
   - detail contract parity
   - public copy hardening in Explore, Filters, detail, and state panels
   - shared detail-core refactor for future favorites detail reuse
+- Remaining blocker:
+  - real backend validation for `1` and `>1` contact-option states is still
+    pending
 
 ### Slice 022
 
 Name: Auth, account, and minimum profile parity against web main
 
 - Goal: align mobile auth/account/profile states with the current web frontend
-- Status: Planned on 2026-04-23
-- Expected outputs:
+- Status: Partial on 2026-04-23
+- Outputs in code:
   - Google attempt plus email/password
   - `onboarding_required` state
   - onboarding/profile completion through `ensure_my_profile(...)`
   - protected-intent persistence and resume
   - product-grade account surface
+- Remaining blocker:
+  - Google and ready-account closure still need live validation against the
+    shared auth environment
 
 ### Slice 023
 
 Name: Favorites destination and protected-intent parity
 
 - Goal: add a first-class favorites surface in mobile
-- Status: Planned on 2026-04-23
-- Expected outputs:
+- Status: Partial on 2026-04-23
+- Outputs in code:
   - `Favoritos` tab
   - favorites list states
   - favorites detail route
   - favorite-intent resume after login/onboarding
+- Remaining blocker:
+  - real add/remove/list/detail validation still depends on a validated ready
+    account in the shared backend
 
 ## Historical POC Framing
 

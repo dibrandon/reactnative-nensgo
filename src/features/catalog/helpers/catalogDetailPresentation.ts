@@ -54,13 +54,13 @@ export function getCatalogDetailFacts(
     });
   }
 
-  if (activity.isFree || priceLabel) {
+  if (!activity.isFree && priceLabel) {
     facts.push({
       key: "price",
       label: "Precio",
-      value: activity.isFree ? "Gratis" : priceLabel,
+      value: priceLabel,
       icon: "cash-multiple",
-      tone: activity.isFree ? "warm" : "default",
+      tone: "default",
     });
   }
 

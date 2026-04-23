@@ -59,6 +59,7 @@ export function CatalogActivityCard({
   onToggleFavorite,
 }: CatalogActivityCardProps) {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
+  const primaryLocationLabel = activity.centerName || activity.venueName;
   const cardBody = (
     <SurfaceCard style={styles.card}>
       <View style={styles.mediaWrap}>
@@ -119,12 +120,16 @@ export function CatalogActivityCard({
             </AppText>
           ) : null}
 
-          <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
-            {activity.centerName || activity.venueName || "Centro por definir"}
-          </AppText>
-          <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
-            {activity.cityName}
-          </AppText>
+          {primaryLocationLabel ? (
+            <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
+              {primaryLocationLabel}
+            </AppText>
+          ) : null}
+          {activity.cityName ? (
+            <AppText variant="body" style={styles.detailLine} numberOfLines={1}>
+              {activity.cityName}
+            </AppText>
+          ) : null}
         </View>
 
         {onPress ? (

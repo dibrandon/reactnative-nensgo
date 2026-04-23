@@ -4,7 +4,6 @@ import { Alert } from "react-native";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
 import { useRemoteFavorites } from "@/features/favorites/hooks/useRemoteFavorites";
-import { emptyCatalogExploreFilters } from "@/features/catalog/helpers/catalogExplore";
 import { useCatalogExplore } from "@/features/catalog/hooks/useCatalogExplore";
 import { nensGoColors, nensGoRadii, nensGoSpacing } from "@/shared/theme/tokens";
 import { AppButton } from "@/shared/ui/AppButton";
@@ -83,7 +82,7 @@ function InlineAction({
 
 export function CatalogScreen() {
   const {
-    favoriteIds,
+    isFavorite,
     isPending,
     toggleFavorite,
   } = useRemoteFavorites();
@@ -104,9 +103,9 @@ export function CatalogScreen() {
     activeFilterCount,
     hasActiveFilters,
     hasSearchQuery,
-    hasAnyExploreConstraint,
   } = useCatalogExplore();
-  const activityCountLabel = `${resultsCount} actividades`;
+  const activityCountLabel =
+    resultsCount === 1 ? "1 actividad" : `${resultsCount} actividades`;
   const filterChipEntries = [
     {
       key: "city",
@@ -141,12 +140,9 @@ export function CatalogScreen() {
   ].filter((entry) => Boolean(entry.value));
 
   async function handleToggleFavorite(activityId: string) {
-    const result = await toggleFavorite(activityId);
-
-    if (result.reason === "auth_required" || result.reason === "profile_required") {
-      router.push("/account");
-      return;
-    }
+    const result = await toggleFavorite(activityId, {
+      returnTo: "/explore",
+    });
 
     if (result.error) {
       Alert.alert(
@@ -249,7 +245,6 @@ export function CatalogScreen() {
       {isLoading ? (
         <CatalogStatePanel
           icon="progress-clock"
-          eyebrow="Catalogo"
           title="Cargando actividades"
           description="Estamos preparando el catalogo."
         />
@@ -278,9 +273,8 @@ export function CatalogScreen() {
       {!isLoading && !error && allActivities.length > 0 && resultsCount === 0 ? (
         <CatalogStatePanel
           icon="filter-variant-remove"
-          eyebrow="Explorar"
           title="No encontramos actividades con estos criterios"
-          description="El catalogo no esta roto: la combinacion actual de busqueda y filtros ha dejado este corte sin resultados. Puedes volver a empezar con un solo gesto."
+          description="Prueba menos filtros o borra la busqueda para ver mas opciones."
           actionLabel="Mostrar todo"
           onAction={clearAllExploreState}
         />
@@ -292,7 +286,7 @@ export function CatalogScreen() {
             <View key={activity.id} style={styles.cardGridItem}>
               <CatalogActivityCard
                 activity={activity}
-                isFavorite={favoriteIds.includes(activity.id)}
+                isFavorite={isFavorite(activity.id)}
                 isFavoritePending={isPending(activity.id)}
                 onPress={() => {
                   router.push(`/explore/${activity.id}`);

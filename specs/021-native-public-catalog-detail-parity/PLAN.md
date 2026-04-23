@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: Planned
+- Status: Partial
 - Date opened: 2026-04-23
 - Last updated: 2026-04-23
 - Branch: `feat/native-web-frontend-parity`
@@ -103,7 +103,16 @@ blindly porting web layout conventions.
 
 ## Outcome
 
-Not shipped yet.
+Implemented in code on 2026-04-23.
+
+- public cards now follow the current web-facing fallback and visibility rules
+- detail now uses a shared native detail core with `shortDescription` as the
+  primary descriptive block
+- Explore/detail favorite taps now flow through protected intents instead of a
+  dead-end account redirect
+- public-state copy no longer carries the former meta/process language
+- real closure still depends on backend data that proves `1` and `>1` active
+  contact-option states in manual runtime validation
 
 ## Follow-Ups
 

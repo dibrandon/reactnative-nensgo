@@ -435,3 +435,27 @@ Impact:
   this parity pass
 - blocked slices `016`-`018` remain historical truth, while new traced slices
   `020`-`023` carry the parity implementation program
+
+## 2026-04-23 - ADR-0024 - Persist Protected Intents In The Account Layer And Resume Favorite Actions From Ready State
+
+Decision:
+
+Protected mobile actions should be persisted by the auth/account layer and only
+resume once the access state reaches `ready`.
+
+Why:
+
+Web parity now expects hearts and favorites entry points to survive the
+anonymous, verification-pending, and onboarding-required states. Sending the
+user to `Cuenta` without remembering what they were trying to do would keep RN
+behind the current product behavior.
+
+Impact:
+
+- the account session layer now persists `open_favorites`, `open_profile`, and
+  `toggle_favorite` intents across auth/onboarding transitions
+- Explore/detail heart taps no longer dead-end in `Cuenta`
+- the favorites provider now resumes deferred favorite toggles once access is
+  ready
+- `Favoritos` tab interception can route not-ready users through account
+  readiness without faking a local favorites state

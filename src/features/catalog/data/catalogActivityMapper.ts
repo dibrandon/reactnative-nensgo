@@ -33,21 +33,30 @@ function buildAgeLabel(
   const normalizedRuleType = getTrimmedText(ageRuleType).toLowerCase();
 
   if (normalizedRuleType === "range") {
-    if (ageMin !== null && ageMin !== undefined && ageMax) {
+    if (
+      ageMin !== null &&
+      ageMin !== undefined &&
+      ageMax !== null &&
+      ageMax !== undefined
+    ) {
       return `${ageMin} a ${ageMax} anos`;
     }
+  }
 
+  if (normalizedRuleType === "from") {
     if (ageMin !== null && ageMin !== undefined) {
       return `Desde ${ageMin} anos`;
     }
+  }
 
-    if (ageMax) {
+  if (normalizedRuleType === "until") {
+    if (ageMax !== null && ageMax !== undefined) {
       return `Hasta ${ageMax} anos`;
     }
   }
 
   if (normalizedRuleType === "all" || normalizedRuleType === "open") {
-    return "Todas las edades";
+    return "Para todas las edades";
   }
 
   return undefined;
@@ -57,8 +66,7 @@ export function mapCatalogActivityReadRowToActivity(
   activityReadRow: CatalogActivityReadRow,
 ): CatalogActivity {
   const description = getTrimmedText(activityReadRow.description);
-  const shortDescription =
-    getTrimmedText(activityReadRow.short_description) || description;
+  const shortDescription = getTrimmedText(activityReadRow.short_description);
 
   return {
     id: String(activityReadRow.id),
@@ -67,6 +75,10 @@ export function mapCatalogActivityReadRowToActivity(
     description: description || undefined,
     shortDescription: shortDescription || undefined,
     imageUrl: normalizeCatalogImageUrl(activityReadRow.image_url),
+    cityId:
+      activityReadRow.city_id !== null && activityReadRow.city_id !== undefined
+        ? String(activityReadRow.city_id)
+        : null,
     cityName: getTrimmedText(activityReadRow.city_name),
     centerName: getTrimmedText(activityReadRow.center_name) || undefined,
     ageLabel: buildAgeLabel(

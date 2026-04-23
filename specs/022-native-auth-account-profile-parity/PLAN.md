@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: Planned
+- Status: Partial
 - Date opened: 2026-04-23
 - Last updated: 2026-04-23
 - Branch: `feat/native-web-frontend-parity`
@@ -107,7 +107,18 @@ the web frontend, adapted to native routing and controls.
 
 ## Outcome
 
-Not shipped yet.
+Implemented in code on 2026-04-23.
+
+- `useAuthSession` now exposes the web-aligned access-state model:
+  `loading`, `anonymous`, `verification_pending`, `onboarding_required`,
+  `ready`, and `error`
+- mobile now attempts Google OAuth through Expo WebBrowser plus email/password
+- onboarding now loads city choices from the real catalog read model and calls
+  `ensure_my_profile(...)`
+- `Cuenta` now behaves as a product surface instead of a diagnostic screen
+- protected intents are persisted and resumed through account readiness
+- end-to-end Google/ready-account validation still remains open and must stay
+  honest
 
 ## Follow-Ups
 

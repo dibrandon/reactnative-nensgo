@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned on 2026-04-23
+Partial on 2026-04-23
 
 ## Problem
 

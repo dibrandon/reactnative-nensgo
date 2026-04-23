@@ -1,9 +1,12 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Tabs } from "expo-router";
 
+import { useAuthSession } from "@/features/account/hooks/useAuthSession";
 import { nensGoColors } from "@/shared/theme/tokens";
 
 export default function TabLayout() {
+  const { accessState, startProtectedAction } = useAuthSession();
+
   return (
     <Tabs
       initialRouteName="explore"
@@ -34,6 +37,32 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="compass-outline"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="favorites"
+        listeners={{
+          tabPress: (event) => {
+            if (accessState === "ready") {
+              return;
+            }
+
+            event.preventDefault();
+            void startProtectedAction({
+              type: "open_favorites",
+              returnTo: "/favorites",
+            });
+          },
+        }}
+        options={{
+          title: "Favoritos",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="heart-outline"
               color={color}
               size={size}
             />

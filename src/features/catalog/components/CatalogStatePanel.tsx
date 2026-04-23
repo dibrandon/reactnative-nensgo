@@ -12,7 +12,7 @@ import { SurfaceCard } from "@/shared/ui/SurfaceCard";
 
 type CatalogStatePanelProps = {
   icon: keyof typeof MaterialCommunityIcons.glyphMap;
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description: string;
   actionLabel?: string;
@@ -36,7 +36,7 @@ export function CatalogStatePanel({
           color={nensGoColors.primaryStrong}
         />
       </View>
-      <AppText variant="eyebrow">{eyebrow}</AppText>
+      {eyebrow ? <AppText variant="eyebrow">{eyebrow}</AppText> : null}
       <AppText variant="title">{title}</AppText>
       <AppText variant="body">{description}</AppText>
       {actionLabel && onAction ? (

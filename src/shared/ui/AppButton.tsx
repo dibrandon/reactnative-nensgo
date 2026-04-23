@@ -24,6 +24,7 @@ export function AppButton({
   variant = "primary",
   icon,
   style,
+  disabled,
   ...props
 }: AppButtonProps) {
   return (
@@ -35,10 +36,12 @@ export function AppButton({
         return [
           styles.base,
           variant === "primary" ? styles.primary : styles.secondary,
+          disabled && styles.disabled,
           state.pressed && styles.pressed,
           resolvedStyle,
         ];
       }}
+      disabled={disabled}
       {...props}
     >
       <View style={styles.content}>
@@ -86,6 +89,9 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.86,
     transform: [{ scale: 0.99 }],
+  },
+  disabled: {
+    opacity: 0.55,
   },
   primaryLabel: {
     color: nensGoColors.surface,
