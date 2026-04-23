@@ -1,7 +1,9 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { router } from "expo-router";
+import { Alert } from "react-native";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
+import { useRemoteFavorites } from "@/features/favorites/hooks/useRemoteFavorites";
 import { emptyCatalogExploreFilters } from "@/features/catalog/helpers/catalogExplore";
 import { useCatalogExplore } from "@/features/catalog/hooks/useCatalogExplore";
 import { nensGoColors, nensGoRadii, nensGoSpacing } from "@/shared/theme/tokens";
@@ -81,6 +83,11 @@ function InlineAction({
 
 export function CatalogScreen() {
   const {
+    favoriteIds,
+    isPending,
+    toggleFavorite,
+  } = useRemoteFavorites();
+  const {
     allActivities,
     visibleActivities,
     error,
@@ -98,8 +105,6 @@ export function CatalogScreen() {
     hasActiveFilters,
     hasSearchQuery,
     hasAnyExploreConstraint,
-    isFavorite,
-    toggleFavorite,
   } = useCatalogExplore();
   const activityCountLabel = `${resultsCount} actividades`;
   const filterChipEntries = [
@@ -134,6 +139,22 @@ export function CatalogScreen() {
       },
     },
   ].filter((entry) => Boolean(entry.value));
+
+  async function handleToggleFavorite(activityId: string) {
+    const result = await toggleFavorite(activityId);
+
+    if (result.reason === "auth_required" || result.reason === "profile_required") {
+      router.push("/account");
+      return;
+    }
+
+    if (result.error) {
+      Alert.alert(
+        "No pudimos guardar este favorito",
+        result.error.message,
+      );
+    }
+  }
 
   return (
     <ScreenContainer keyboardShouldPersistTaps="handled">
@@ -271,12 +292,13 @@ export function CatalogScreen() {
             <View key={activity.id} style={styles.cardGridItem}>
               <CatalogActivityCard
                 activity={activity}
-                isFavorite={isFavorite(activity.id)}
-                onToggleFavorite={() => {
-                  toggleFavorite(activity.id);
-                }}
+                isFavorite={favoriteIds.includes(activity.id)}
+                isFavoritePending={isPending(activity.id)}
                 onPress={() => {
                   router.push(`/explore/${activity.id}`);
+                }}
+                onToggleFavorite={() => {
+                  void handleToggleFavorite(activity.id);
                 }}
               />
             </View>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { mockCatalogRepository } from "@/features/catalog/data/catalogRepository";
+import { catalogRepository } from "@/features/catalog/data/catalogRepository";
 import type { CatalogActivity } from "@/features/catalog/models/CatalogActivity";
 
 export function useCatalogActivities() {
@@ -17,7 +17,7 @@ export function useCatalogActivities() {
       setError(null);
 
       try {
-        const nextActivities = await mockCatalogRepository.listActivities();
+        const nextActivities = await catalogRepository.listActivities();
 
         if (!cancelled) {
           setActivities(nextActivities);

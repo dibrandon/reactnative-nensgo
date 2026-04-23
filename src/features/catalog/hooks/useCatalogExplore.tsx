@@ -34,8 +34,6 @@ type CatalogExploreContextValue = {
   hasActiveFilters: boolean;
   hasSearchQuery: boolean;
   hasAnyExploreConstraint: boolean;
-  isFavorite: (activityId: string) => boolean;
-  toggleFavorite: (activityId: string) => void;
   filterOptions: ReturnType<typeof getFilterOptions>;
 };
 
@@ -53,7 +51,6 @@ export function CatalogExploreProvider({
   const [appliedFilters, setAppliedFilters] = useState<CatalogExploreFilters>(
     emptyCatalogExploreFilters,
   );
-  const [favoriteActivityIds, setFavoriteActivityIds] = useState<string[]>([]);
 
   const filterOptions = useMemo(
     () => getFilterOptions(activities),
@@ -104,15 +101,6 @@ export function CatalogExploreProvider({
       hasActiveFilters,
       hasSearchQuery,
       hasAnyExploreConstraint: hasActiveFilters || hasSearchQuery,
-      isFavorite: (activityId: string) =>
-        favoriteActivityIds.includes(activityId),
-      toggleFavorite: (activityId: string) => {
-        setFavoriteActivityIds((current) =>
-          current.includes(activityId)
-            ? current.filter((id) => id !== activityId)
-            : [...current, activityId],
-        );
-      },
       filterOptions,
     }),
     [
@@ -126,7 +114,6 @@ export function CatalogExploreProvider({
       activeFilterCount,
       hasActiveFilters,
       hasSearchQuery,
-      favoriteActivityIds,
       filterOptions,
     ],
   );

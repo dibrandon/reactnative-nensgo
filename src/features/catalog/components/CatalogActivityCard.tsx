@@ -13,9 +13,10 @@ import { SurfaceCard } from "@/shared/ui/SurfaceCard";
 
 type CatalogActivityCardProps = {
   activity: CatalogActivity;
-  isFavorite: boolean;
-  onToggleFavorite?: () => void;
+  isFavorite?: boolean;
+  isFavoritePending?: boolean;
   onPress?: () => void;
+  onToggleFavorite?: () => void;
 };
 
 function CardBadge({
@@ -52,38 +53,52 @@ function CardBadge({
 
 export function CatalogActivityCard({
   activity,
-  isFavorite,
-  onToggleFavorite,
+  isFavorite = false,
+  isFavoritePending = false,
   onPress,
+  onToggleFavorite,
 }: CatalogActivityCardProps) {
   const imageSource = resolveCatalogImageSource(activity.imageUrl);
   const cardBody = (
     <SurfaceCard style={styles.card}>
       <View style={styles.mediaWrap}>
         <Image source={imageSource} style={styles.image} />
-        <View style={styles.topRow}>
-          {activity.isFree ? <CardBadge label="Gratis" tone="warm" /> : null}
+        {activity.isFree ? (
+          <View style={styles.topRow}>
+            <CardBadge label="Gratis" tone="warm" />
+          </View>
+        ) : null}
+        {onToggleFavorite ? (
           <Pressable
             accessibilityRole="button"
             onPress={(event) => {
               event.stopPropagation();
-              onToggleFavorite?.();
+              onToggleFavorite();
             }}
-            hitSlop={8}
             style={({ pressed }) => [
               styles.favoriteButton,
               pressed && styles.favoriteButtonPressed,
             ]}
           >
             <MaterialCommunityIcons
-              name={isFavorite ? "heart" : "heart-outline"}
-              size={22}
+              name={
+                isFavoritePending
+                  ? "progress-clock"
+                  : isFavorite
+                    ? "heart"
+                    : "heart-outline"
+              }
+              size={20}
               color={
-                isFavorite ? nensGoColors.coral : nensGoColors.primaryStrong
+                isFavorite
+                  ? nensGoColors.coral
+                  : isFavoritePending
+                    ? nensGoColors.primaryStrong
+                    : nensGoColors.primaryStrong
               }
             />
           </Pressable>
-        </View>
+        ) : null}
       </View>
 
       <View style={styles.content}>
@@ -169,25 +184,26 @@ const styles = StyleSheet.create({
   topRow: {
     position: "absolute",
     left: nensGoSpacing.md,
-    right: nensGoSpacing.md,
     top: nensGoSpacing.md,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
     gap: nensGoSpacing.xs,
   },
   favoriteButton: {
-    width: 42,
-    height: 42,
+    position: "absolute",
+    right: nensGoSpacing.md,
+    top: nensGoSpacing.md,
+    width: 38,
+    height: 38,
     borderRadius: nensGoRadii.pill,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.96)",
+    backgroundColor: "rgba(255, 255, 255, 0.94)",
     borderWidth: 1,
     borderColor: nensGoColors.border,
   },
   favoriteButtonPressed: {
-    opacity: 0.92,
+    opacity: 0.86,
   },
   content: {
     paddingHorizontal: nensGoSpacing.lg,

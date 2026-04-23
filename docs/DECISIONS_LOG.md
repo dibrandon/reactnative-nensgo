@@ -251,3 +251,158 @@ Impact:
 - the card media block now constrains layout before the image is painted
 - the image remains `cover`, but no longer dictates the vertical size of the card
 - the existing browse hierarchy and local heart behavior remain unchanged
+
+## 2026-04-21 - ADR-0016 - Use The Shared Supabase Catalog Read Model Without Mock Fallback
+
+Decision:
+
+The native catalog runtime now reads from the shared Supabase view
+`catalog_activities_read` and does not keep a runtime fallback to curated local
+mocks.
+
+Why:
+
+The sibling web repo already closed the real catalog direction, and the native
+runtime had reached the point where mock data was hiding truth instead of
+helping development. The baseline needed to become smaller, more honest, and
+backend-aligned.
+
+Impact:
+
+- `Explorar` and detail now depend on a real Supabase-backed repository seam
+- the mobile runtime uses an explicit `CatalogActivityReadRow ->
+  CatalogActivity` mapper
+- missing env or failed reads now surface honest loading/error states instead of
+  falling back silently to fake data
+
+## 2026-04-21 - ADR-0017 - Remove Fake Account, Favorite, And Contact Affordances Until Their Real Paths Exist
+
+Decision:
+
+The mobile runtime should no longer pretend that account, favorites, or contact
+already work when those paths are not actually connected.
+
+Why:
+
+The old fake user, fake heart toggle, and old WhatsApp contact seam created a
+misleading baseline once the catalog itself became real. Keeping those demo
+affordances would blur what exists versus what is still pending.
+
+Impact:
+
+- `Cuenta` now shows an honest status surface instead of a fake user profile
+- the explore-local heart toggle has been removed
+- detail no longer depends on `contactPhone`
+- real mobile auth, remote favorites, and `activity_contact_options` remain
+  explicit follow-up slices
+
+## 2026-04-22 - ADR-0018 - Resolve Observed Relative Catalog Image Paths Through The Shared Supabase Activities Bucket
+
+Decision:
+
+The mobile mapper should resolve the currently observed relative `image_url`
+contract through the shared Supabase public `activities` bucket instead of
+discarding those images as unusable.
+
+Why:
+
+The checked backend returns relative paths such as
+`es/barcelona/sitges/act_5.jpg`, and those assets are already publicly
+reachable through the shared Supabase storage path. Treating them as unresolved
+was needlessly degrading the real catalog demo.
+
+Impact:
+
+- cards and detail now render real media for the current shared catalog rows
+- the brand fallback remains only for absent or still-unresolved media
+- the normalization stays grounded in the currently observed backend contract
+
+## 2026-04-22 - ADR-0019 - Use Activity Contact Options As The Only Mobile Detail Contact Source
+
+Decision:
+
+The mobile detail screen now uses `activity_contact_options` as its only real
+contact source and follows the zero/one/many behavior already closed in the
+sibling repo.
+
+Why:
+
+The shared product direction already rejected center-level fallback and
+hardcoded WhatsApp. Reopening those paths in mobile would reintroduce fake
+runtime behavior after the catalog became real.
+
+Impact:
+
+- zero active options render an honest disabled state
+- one active option opens directly
+- multiple active options open a chooser surface
+- the slice remains blocked until the shared backend exposes real `1` and `>1`
+  validation cases
+
+## 2026-04-22 - ADR-0020 - Start Mobile Auth With A Narrow Email Password Session Baseline
+
+Decision:
+
+The first real mobile auth slice uses email/password as the chosen baseline
+path, centered on session restore, live account state, and sign-out.
+
+Why:
+
+The repo needed a real session seam before favorites or other user-linked work
+could proceed, but it still needed to stay narrower than the full web auth
+migration. Email/password is the most contained baseline that still exercises
+real session behavior.
+
+Impact:
+
+- the repo now has a live mobile auth/session provider
+- `Cuenta` now reflects real auth state instead of fixed copy
+- Google OAuth, onboarding, and provisioning stay explicitly out of scope for
+  this slice
+- the slice remains blocked until the shared auth environment can be validated
+  with a ready account
+
+## 2026-04-22 - ADR-0021 - Reintroduce Hearts Only Against Remote Truth And Ready Account State
+
+Decision:
+
+The heart affordance can return in mobile only when it is backed by
+`user_favorite_activities` and only for users whose account is ready for real
+remote writes.
+
+Why:
+
+The real-catalog baseline deliberately removed fake favorites. Reintroducing the
+heart without real remote truth would immediately blur the runtime again.
+
+Impact:
+
+- explore and detail now mount hearts against a remote favorites provider
+- anonymous or not-ready users are redirected honestly to `Cuenta`
+- favorite closure remains blocked until the auth baseline can be validated with
+  a ready account
+
+## 2026-04-22 - ADR-0022 - Keep Public Catalog Bootstrap Independent From Native Auth Storage Startup
+
+Decision:
+
+Expo Go compatibility repairs should align AsyncStorage to the SDK-supported
+version and ensure the global Supabase client does not let missing native auth
+storage crash the public catalog runtime.
+
+Why:
+
+The repo now contains a real auth/session baseline, but the immediate runtime
+failure observed on Expo Go was not a catalog query problem. It was a storage
+compatibility problem during global Supabase auth initialization. Letting that
+failure take down `Explorar` would couple public catalog truth to optional auth
+persistence in the wrong direction.
+
+Impact:
+
+- the repo now pins `@react-native-async-storage/async-storage` to the Expo SDK
+  54-compatible `2.2.0`
+- the Supabase client resolves native auth storage lazily instead of importing
+  it eagerly at module load
+- if native storage is unavailable, auth persistence degrades honestly instead
+  of crashing the public catalog bootstrap

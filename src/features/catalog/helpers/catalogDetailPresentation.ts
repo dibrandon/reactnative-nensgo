@@ -28,10 +28,6 @@ function hasDistinctVenueName(venueName: string, centerName: string) {
   return venueName.toLocaleLowerCase() !== centerName.toLocaleLowerCase();
 }
 
-function normalizePhoneNumber(phone: string) {
-  return phone.replace(/\D/g, "");
-}
-
 export function getCatalogDetailFacts(
   activity: CatalogActivity,
 ): CatalogDetailItem[] {
@@ -117,17 +113,4 @@ export function getCatalogLocationFacts(
   }
 
   return locationFacts;
-}
-
-export function buildCatalogContactUrl(activity: CatalogActivity) {
-  const normalizedPhone = normalizePhoneNumber(getTrimmedText(activity.contactPhone));
-
-  if (!normalizedPhone) {
-    return null;
-  }
-
-  const cityFragment = activity.cityName ? ` en ${activity.cityName}` : "";
-  const message = `Hola, me interesa la actividad "${activity.title}"${cityFragment}. Podrias darme mas informacion?`;
-
-  return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`;
 }

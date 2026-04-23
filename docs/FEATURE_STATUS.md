@@ -1,6 +1,6 @@
 # Feature Status
 
-Last updated: 2026-04-18
+Last updated: 2026-04-22
 
 | ID | Feature | Status | Notes |
 | --- | --- | --- | --- |
@@ -19,3 +19,9 @@ Last updated: 2026-04-18
 | `011-compact-catalog-card-alignment` | Compact catalog card alignment | Completed | `Explorar` now uses a denser two-column grid and a compact browse card aligned more closely with the public NensGo reference while preserving current catalog behavior. |
 | `012-public-card-correction` | Public card correction for native explore | Completed | `Explorar` now uses the corrected web-like card hierarchy, a local in-memory heart toggle, and a tighter header while leaving `Cuenta` unsynced and unchanged. |
 | `013-card-media-aspect-fix` | Card media aspect fix | Completed | The remaining stretched-card regression is now fixed by constraining the media container and hardening grid alignment, so the corrected card content from slice `012` renders as intended. |
+| `014-native-real-catalog-no-mocks` | Native real catalog baseline without mocks | Completed | `Explorar` now reads the real shared Supabase catalog, detail no longer depends on `contactPhone`, fake hearts are gone, and `Cuenta` now exposes an honest status surface instead of a fake user. |
+| `015-native-catalog-image-url-hardening` | Native catalog image URL hardening | Completed | The mobile mapper now resolves the currently observed relative `image_url` format through the shared Supabase `activities` bucket, so the current real catalog rows render their actual images. |
+| `016-native-detail-real-contact-options` | Native detail real contact options | Blocked | Mobile detail now reads `activity_contact_options` and implements zero/one/many contact states, but the checked shared backend still exposes only `0` active options, so real validation for `1` and `>1` remains blocked. |
+| `017-native-auth-runtime-baseline` | Native auth runtime baseline | Blocked | The repo now has a real mobile auth/session provider with persisted sessions and live account states, but closure is blocked because the checked shared auth environment returned `Database error saving new user` on validation sign-up and no ready account was available to prove the full baseline. |
+| `018-native-remote-favorites` | Native remote favorites | Blocked | Explore and detail now mount hearts against `user_favorite_activities` with honest gating, but round-trip validation remains blocked until `017` can be proven with a ready authenticated account. |
+| `019-expo-go-supabase-auth-storage-compat` | Expo Go Supabase auth storage compatibility | Completed | Aligned AsyncStorage to the Expo SDK 54 contract and hardened Supabase client startup so missing native auth storage no longer crashes the public catalog runtime. |
