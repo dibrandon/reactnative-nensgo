@@ -406,3 +406,32 @@ Impact:
   it eagerly at module load
 - if native storage is unavailable, auth persistence degrades honestly instead
   of crashing the public catalog bootstrap
+
+## 2026-04-23 - ADR-0023 - Use `nenkatsu/main` As The Frontend Source Of Truth For Mobile-Parity Surfaces
+
+Decision:
+
+The active mobile direction now uses `D:\dev\nensGo\nenkatsu` `main` as the
+source of truth for frontend behavior wherever the web surface is portable and
+reasonable in a native family-facing app.
+
+Why:
+
+The shared backend boundaries and much of the frontend product direction have
+already moved in the sibling web repo. Leaving RN on the older “deliberately
+not parity” framing would keep docs and implementation targets behind the real
+product state. At the same time, blindly porting the full web surface would
+pull mobile into B2B, internal, reporting, and SEO-only routes that do not
+belong in the app.
+
+Impact:
+
+- mobile parity is now judged against web main for catalog, detail,
+  contact-option behavior, auth/account/profile states, favorites, and
+  public-surface hardening
+- `/para-centros`, `/internal/*`, and `/api/internal/pvi` remain explicitly
+  outside the mobile parity target
+- the current RN background and global background logic stay unchanged during
+  this parity pass
+- blocked slices `016`-`018` remain historical truth, while new traced slices
+  `020`-`023` carry the parity implementation program

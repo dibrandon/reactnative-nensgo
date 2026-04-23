@@ -14,7 +14,8 @@ The repository currently contains:
 - SDD operating documents
 - Expo SDK 54 runtime dependencies
 - `src/app` driven by Expo Router
-- a catalog-backed `Explorar` tab plus an honest status-based `Cuenta` tab
+- a catalog-backed `Explorar` tab plus an honest but still parity-incomplete
+  `Cuenta` tab
 - stack-scoped explore state for search, filters, counts, and result derivation
 - shared theme tokens plus typography primitives
 - reusable `src/shared/ui` building blocks for text, buttons, surfaces, pills, brand lockup, and screen framing
@@ -30,11 +31,38 @@ The repository currently contains:
   hook, URL action helper, and zero/one/many contact state handling
 - a dedicated filters route under `src/app/(tabs)/explore/filters.tsx`
 - `src/features/account` with a live auth/session provider, app-user read seam,
-  and account status surface for the `Cuenta` tab
+  and an account surface that still needs parity hardening against web main
 - `src/features/favorites` with a remote favorites provider consumed by explore
   and detail
 
-## Provisional Target Architecture For The POC
+## Current Parity Direction
+
+The active direction is no longer "avoid web parity by default".
+
+The checked mobile repo should now use `D:\dev\nensGo\nenkatsu` `main` as the
+source of truth for portable frontend behavior, while still applying native
+product judgment.
+
+Parity in this repo means:
+
+- same shared backend boundaries where mobile portability makes sense
+- same honest frontend states when backend/config still block closure
+- same refusal to use fake data where the web frontend already uses real paths
+- same public-surface hardening standard
+
+Parity does not mean:
+
+- matching the web background
+- porting web-only routes, internal tooling, SEO structure, or B2B landing
+- copying modal mechanics or route names 1:1 into native
+
+Non-negotiable visual guardrail:
+
+- `src/shared/ui/ScreenContainer.tsx` and `src/shared/theme/tokens.ts` define
+  the current RN background language and must not be changed for this parity
+  pass
+
+## Provisional Target Architecture For The Parity Pass
 
 This is a target direction, not implemented reality.
 
@@ -57,23 +85,25 @@ The POC should evolve in thin layers:
 
 ### Product Interpretation For Mobile
 
-The mobile POC is not a route-for-route copy of the current web experience.
+The mobile app is still not a route-for-route copy of the web frontend.
 
 The intended native interpretation is:
 
 - a focused family loop centered on discovering activities
-- a short, app-like `Explorar` entry point instead of a long editorial landing
-- a full-screen filters route with draft application semantics instead of dense in-list web controls
-- a full-screen detail route instead of a modal detail overlay
-- an early visible `Cuenta` surface that stays honest about auth being unimplemented
+- a short, app-like `Explorar` entry point instead of the web landing
+- a full-screen filters route instead of dense in-list web controls
+- routed native detail surfaces instead of web modal carryover
+- explicit mobile surfaces for account and favorites when those capabilities are
+  part of the web product
 
-The following current web areas are intentionally outside the native POC baseline:
+The following current web areas are intentionally outside the mobile parity
+baseline:
 
 - `/para-centros`
-- `/pvi`
-- admin or internal surfaces
+- `/api/internal/pvi`
+- `/internal/*`
 - SEO-driven web structure
-- parity with current web filters, favorites, and protected actions
+- landing-only or B2B-only surfaces
 
 ### Module Direction
 
@@ -90,7 +120,12 @@ src/
         index.tsx
         filters.tsx
         [activityId].tsx
-      account.tsx
+      favorites/
+        _layout.tsx
+        index.tsx
+        [activityId].tsx
+      account/
+        index.tsx
   features/
     catalog/
       components/
@@ -104,6 +139,7 @@ src/
       hooks/
       models/
     favorites/
+      components/
       hooks/
     shell/
       components/
@@ -117,10 +153,14 @@ As the app grows, keep feature code localized and shared concerns explicit. At a
 
 - app shell and navigation
 - shared UI or theme primitives
-- feature modules for catalog and account, including explore-scoped state and the honest account status surface
+- feature modules for catalog, favorites, and account, including
+  explore-scoped state, protected intents, and the account/profile surface
 - configuration and environment boundaries
 
-The current implementation already uses `shared/theme` and `shared/ui` as the visual baseline for shell, catalog, detail, filters, and the account status screen. The next slices should extend those areas only when a future iteration truly needs more surface area.
+The current implementation already uses `shared/theme` and `shared/ui` as the
+visual baseline for shell, catalog, detail, filters, and the account surface.
+The parity slices should extend those areas without replacing the existing
+background system.
 
 ### Data Boundary Direction
 
@@ -132,6 +172,7 @@ For future catalog slices, use a presentation-oriented mobile contract as the de
 type CatalogActivity = {
   id: string;
   title: string;
+  cityId?: string;
   description?: string;
   categoryLabel?: string;
   shortDescription?: string;
@@ -147,8 +188,9 @@ type CatalogActivity = {
 };
 ```
 
-This contract now exists in code under `src/features/catalog/models/CatalogActivity.ts`.
-Do not expand it into a mirror of the current web model unless a later slice proves the extra fields are necessary.
+This contract exists in code under `src/features/catalog/models/CatalogActivity.ts`.
+It may grow only where the current parity pass needs real shared frontend
+behavior, such as `city_id` truth for onboarding or favorites/detail reuse.
 
 The real read-side boundary now sits one step earlier in code through
 `CatalogActivityReadRow`, which mirrors the shared Supabase view
@@ -161,9 +203,11 @@ relative `image_url` contract into an absolute path against the shared Supabase
 
 - The repo will use spec-driven development as its operating model.
 - Expo is the default starting point unless later repo reality or explicit user instruction overrides it.
-- The native POC will validate a focused family loop instead of web parity.
+- The native app still validates a focused family loop, but now uses
+  `nenkatsu/main` as the source of truth for portable frontend parity.
 - Expo Router will be used for the shell slice.
-- The first native shell will expose `Explorar` and `Cuenta` tabs.
+- The shell started with `Explorar` and `Cuenta`, but the active parity target
+  now expects `Favoritos` as a first-class mobile surface as well.
 - The visual baseline will stay intentionally thin and centered on reusable native primitives before feature slices add data.
 - Catalog reads now use the shared Supabase view `catalog_activities_read` with no mock fallback.
 - Detail is implemented as a route, not as a modal migration.
@@ -174,26 +218,27 @@ relative `image_url` contract into an absolute path against the shared Supabase
   `activities` bucket when the backend emits the currently observed path format.
 - Mobile detail contact now reads `activity_contact_options` only and follows
   the zero/one/many rule already closed in the sibling repo.
-- Email/password is the chosen narrow path for the first real mobile auth
-  baseline.
-- Remote favorites are mounted only on top of a ready authenticated app user.
+- Google plus email/password is the auth direction already closed in the sibling
+  repo, and mobile should converge there where Expo/runtime config allows it.
+- `user_profiles` remains the app-user truth and `city_id` remains the
+  persistent city truth for mobile as well.
+- Remote favorites remain mounted only on top of ready account truth.
 
 ## Decisions Explicitly Deferred
 
 These decisions should not be invented before the app scaffold task:
 
 - state management approach beyond local needs
-- auth provider integration details
+- auth provider integration details beyond the current parity target
 - analytics and observability stack
 - final mobile contact UX once `activity_contact_options` is wired
-- Google OAuth in mobile
-- onboarding/profile completion after auth exists
 - whether the blocked auth/favorites slices can be validated against the current
   shared backend without extra backend readiness work
 
 ## Architecture Guardrails
 
 - Do not port a web architecture blindly into mobile.
-- Keep the POC thin and reversible.
+- Keep the mobile runtime thin and reversible even while chasing parity.
 - Prefer explicit seams over hidden runtime fallbacks.
+- Do not mutate the global RN background while implementing parity.
 - Record real decisions in `docs/DECISIONS_LOG.md`.

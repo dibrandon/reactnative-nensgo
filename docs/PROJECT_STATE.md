@@ -4,9 +4,9 @@
 
 Last updated: 2026-04-23
 
-- Current branch: `main`
-- Main integration state: includes slices `014` through `019` from
-  `feat/native-real-catalog-no-mocks`
+- Current branch: `feat/native-web-frontend-parity`
+- Current execution program: parity audit and implementation pass against
+  `D:\dev\nensGo\nenkatsu` `main`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: `origin` configured
 - Application code: Expo Router shell, Supabase-backed public catalog with
@@ -74,6 +74,11 @@ The repository now has the following operating baseline:
 - decisions log
 - first spec and first plan for bootstrap
 - initial git history that captures repo setup evolution
+- a parity-audit slice plus planned parity implementation slices under:
+  - `specs/020-native-web-parity-audit/`
+  - `specs/021-native-public-catalog-detail-parity/`
+  - `specs/022-native-auth-account-profile-parity/`
+  - `specs/023-native-favorites-surface-parity/`
 
 ## What Still Does Not Exist
 
@@ -81,6 +86,9 @@ Missing or still-unclosed layers include:
 
 - real-data validation for `1` and `>1` active `activity_contact_options`
   states
+- Google OAuth parity against the current web auth surface
+- onboarding/profile completion through `ensure_my_profile(...)`
+- a dedicated favorites destination and favorites detail surface
 - a fully validated ready auth baseline against a profile-ready account
 - fully validated remote favorite round-trips against a ready account
 - test baseline
@@ -88,7 +96,10 @@ Missing or still-unclosed layers include:
 
 ## Immediate Implication
 
-Open slices now exist, but three are currently blocked:
+Open slices now exist, and the active implementation program is the parity pass
+against `nenkatsu/main`.
+
+Historical blocked context still exists in:
 
 - `016-native-detail-real-contact-options`: blocked by missing real `1` and
   `>1` contact-option data in the shared backend
@@ -98,13 +109,27 @@ Open slices now exist, but three are currently blocked:
 - `018-native-remote-favorites`: blocked behind `017` and the absence of a
   validated ready account for round-trip checks
 
-Current next action candidates:
+Current parity action candidates:
 
-- unblocking shared backend data for contact-option validation
-- unblocking shared auth readiness or supplying a prepared ready account for
-  mobile validation
-- re-running ready-account validation for remote favorites once auth is
-  unblocked
+- `020-native-web-parity-audit`: document the parity matrix, exclusions, and
+  roadmap shift
+- `021-native-public-catalog-detail-parity`: align public catalog/detail with
+  current web rules and public-surface hardening
+- `022-native-auth-account-profile-parity`: align auth/account/profile to the
+  current web frontend, including Google attempt and onboarding-required state
+- `023-native-favorites-surface-parity`: add a first-class mobile favorites
+  surface plus protected-intent resume
+
+Explicit exclusions for this pass:
+
+- `/para-centros`
+- `/internal/*`
+- `/api/internal/pvi`
+- `landingb2b`
+
+Non-negotiable visual guardrail:
+
+- the global RN background stays unchanged during this parity pass
 
 Current runtime note:
 

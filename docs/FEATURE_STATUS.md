@@ -1,6 +1,6 @@
 # Feature Status
 
-Last updated: 2026-04-22
+Last updated: 2026-04-23
 
 | ID | Feature | Status | Notes |
 | --- | --- | --- | --- |
@@ -25,3 +25,7 @@ Last updated: 2026-04-22
 | `017-native-auth-runtime-baseline` | Native auth runtime baseline | Blocked | The repo now has a real mobile auth/session provider with persisted sessions and live account states, but closure is blocked because the checked shared auth environment returned `Database error saving new user` on validation sign-up and no ready account was available to prove the full baseline. |
 | `018-native-remote-favorites` | Native remote favorites | Blocked | Explore and detail now mount hearts against `user_favorite_activities` with honest gating, but round-trip validation remains blocked until `017` can be proven with a ready authenticated account. |
 | `019-expo-go-supabase-auth-storage-compat` | Expo Go Supabase auth storage compatibility | Completed | Aligned AsyncStorage to the Expo SDK 54 contract and hardened Supabase client startup so missing native auth storage no longer crashes the public catalog runtime. |
+| `020-native-web-parity-audit` | RN parity audit against `nenkatsu/main` | Completed | The repo now documents `nenkatsu/main` as the source of truth for portable frontend parity, records explicit web-only exclusions, and opens the traced parity implementation slices `021`-`023`. |
+| `021-native-public-catalog-detail-parity` | Public catalog and detail parity against web main | Planned | Will align public card/detail rules, contact-state honesty, and public-surface hardening while keeping the existing RN background and native routed detail. |
+| `022-native-auth-account-profile-parity` | Auth, account, and minimum profile parity against web main | Planned | Will expand mobile auth toward the current web baseline with Google attempt, onboarding-required state, `ensure_my_profile(...)`, and a product-grade account surface. |
+| `023-native-favorites-surface-parity` | Favorites destination and protected-intent parity | Planned | Will add `Favoritos` as a first-class mobile surface, favorites detail reuse, and protected-intent resume instead of dead-end account redirects. |

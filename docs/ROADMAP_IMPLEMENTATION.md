@@ -1,35 +1,95 @@
 # Roadmap Implementation
 
-This roadmap defines the intended sequence for the React Native POC.
+This roadmap defines the intended sequence for the React Native app.
 
-## POC Framing
+## Current Program
 
-The native POC is intentionally narrower than the current web baseline.
+The active implementation program is frontend parity against
+`D:\dev\nensGo\nenkatsu` `main` for mobile-portable surfaces.
 
-The validated experience should focus on:
+This does not replace native judgment. It means the web repo is now the
+frontend source of truth for:
 
-- entering a native app shell
-- exploring a family-facing catalog
-- opening a full-screen detail route
-- understanding how future account and auth can fit
+- public catalog rules
+- detail structure and state honesty
+- auth/account/profile direction
+- favorites direction
+- public-surface hardening
 
-The following are explicitly out of the POC baseline unless a later slice reopens them:
+The following remain explicitly out of scope for this parity line:
 
 - `/para-centros`
-- `/pvi`
-- admin or internal surfaces
-- full auth and profile behavior
-- favorites and protected-action flows
-- complex filters
-- SEO or web parity work
+- `/api/internal/pvi`
+- `/internal/*`
+- B2B/landing-only surfaces
+- SEO structure
 
-The current reopened demo slice still keeps the scope narrow. It adds only:
+The following visual guardrail remains non-negotiable:
 
-- simple text search
-- three stable filters: `city`, `category`, and `ageBand`
-- a dedicated filters screen with preserved explore state
-- a real public catalog baseline from the shared Supabase backend without mock
-  fallback
+- keep the current RN background and global background logic unchanged
+
+## Current Parity Program
+
+### Slice 020
+
+Name: RN parity audit against `nenkatsu/main`
+
+- Goal: document the parity matrix, exclusions, and roadmap shift
+- Status: Completed on 2026-04-23
+- Outputs:
+  - `specs/020-native-web-parity-audit/`
+  - opened parity slices `021`-`023`
+  - updated master docs
+
+Completed result:
+
+- the repo now treats `nenkatsu/main` as the source of truth for portable
+  frontend parity
+- the explicit exclusions are now recorded in repo docs
+- the parity implementation program is now tracked through `021`-`023`
+
+### Slice 021
+
+Name: Public catalog and detail parity against web main
+
+- Goal: align public catalog cards, detail rules, and public-surface hardening
+- Status: Planned on 2026-04-23
+- Expected outputs:
+  - card/media rule parity
+  - detail contract parity
+  - public copy hardening in Explore, Filters, detail, and state panels
+  - shared detail-core refactor for future favorites detail reuse
+
+### Slice 022
+
+Name: Auth, account, and minimum profile parity against web main
+
+- Goal: align mobile auth/account/profile states with the current web frontend
+- Status: Planned on 2026-04-23
+- Expected outputs:
+  - Google attempt plus email/password
+  - `onboarding_required` state
+  - onboarding/profile completion through `ensure_my_profile(...)`
+  - protected-intent persistence and resume
+  - product-grade account surface
+
+### Slice 023
+
+Name: Favorites destination and protected-intent parity
+
+- Goal: add a first-class favorites surface in mobile
+- Status: Planned on 2026-04-23
+- Expected outputs:
+  - `Favoritos` tab
+  - favorites list states
+  - favorites detail route
+  - favorite-intent resume after login/onboarding
+
+## Historical POC Framing
+
+The sections below remain as execution history. They explain how the repo got
+to its current state, but they no longer define the active product direction by
+themselves.
 
 ## Phase 1
 
