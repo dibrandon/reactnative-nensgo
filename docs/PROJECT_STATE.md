@@ -2,9 +2,11 @@
 
 ## Snapshot
 
-Last updated: 2026-04-22
+Last updated: 2026-04-23
 
-- Current branch: `feat/native-real-catalog-no-mocks`
+- Current branch: `main`
+- Main integration state: includes slices `014` through `019` from
+  `feat/native-real-catalog-no-mocks`
 - Git history: initialized with traceable SDD baseline commits
 - Git remotes: `origin` configured
 - Application code: Expo Router shell, Supabase-backed public catalog with
